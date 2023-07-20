@@ -31,8 +31,8 @@ public class CotroladorGeneral {
 	
 
 
-	@RequestMapping(value = "/consulta_descuento", method = RequestMethod.POST)
-	@ApiOperation(tags = "Descuentos", value = "Obtiene los descuentos uno mediante paginacion (pagina= numero de pagina, cantidad= numero de registros de retorno)")
+	@RequestMapping(value = "/token", method = RequestMethod.POST)
+	@ApiOperation(tags = "Token", value = "Obtiene los descuentos uno mediante paginacion (pagina= numero de pagina, cantidad= numero de registros de retorno)")
 	public ResponseEntity<?> descuento(@RequestBody DescuentoRequest param) {
 
 		try {
