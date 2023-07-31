@@ -1,5 +1,6 @@
 package com.ec.pintulac.controlador;
 
+import org.springframework.http.*;
 import java.util.Base64;
 
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -23,22 +24,19 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api")
-@Api(value = "Consumo de  descuentos", tags = "Descuentos", description = "Consumo de informacion desde aplicaciones de terceros")
+@Api(value = "Consumo de  descuentos", tags = "Recuperar Token", description = "Consumo de informacion desde aplicaciones de terceros")
 public class CotroladorGeneral {
 
 	@Value("${webservices.linko.ruta}")
 	private String ruta;
-	
 
-
-	@RequestMapping(value = "/token", method = RequestMethod.POST)
-	@ApiOperation(tags = "Token", value = "Obtiene los descuentos uno mediante paginacion (pagina= numero de pagina, cantidad= numero de registros de retorno)")
-	public ResponseEntity<?> descuento(@RequestBody DescuentoRequest param) {
+	@RequestMapping(value = "/token", method = RequestMethod.GET)
+	@ApiOperation(tags = "Token", value = "Obtiene Token")
+	public String obtenerToken() {
 
 		try {
-			// request url
-//			String url = "http://150.136.243.2:7070/jderest/orchestrator/ORCH Consulta Descuentos";
 
+			ruta="http://150.136.243.2:7070/jderest/v2/tokenrequest";
 			HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
 					HttpClientBuilder.create().build());
 			RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
@@ -50,48 +48,22 @@ public class CotroladorGeneral {
 			HttpHeaders headers = new HttpHeaders();
 			headers.add("Authorization", "Basic " + base64Creds);
 
-			// create request
-			HttpEntity<DescuentoRequest> requestBody = new HttpEntity<DescuentoRequest>(param, headers);
-//		    HttpEntity<String> request = new HttpEntity(headers);
+			// Configuramos la entidad http y realizamos peticion get
+			HttpEntity<String> requestEntity = new HttpEntity<>(headers);
+			ResponseEntity<String> response = restTemplate.exchange(ruta, HttpMethod.GET, requestEntity, String.class);
 
-			// make a request
+			// Obtener el código de estado HTTP de la respuesta
+			HttpStatus statusCode = response.getStatusCode();
 
-			DescuentoResponse response = restTemplate.postForObject(ruta, requestBody, DescuentoResponse.class);
-		
-//		    ResponseEntity<String> response = new RestTemplate().exchange(url, HttpMethod.POST, request, String.class);
-
-			// get JSON response
-//		    String json = response.getBody();
-//			return response;
-//			ProcessBuilder processBuilder = new ProcessBuilder();
-//					processBuilder.directory(new File("D:\\bash.sh"));
-//					Process process = processBuilder.start();
-			
-					
-//					ProcessBuilder processBuilder = new ProcessBuilder();
-//							processBuilder.directory(new File("D:\\bash.sh"));
-//							Process process = processBuilder.start();
-//							
-//							String path = "D:\\bash.bat";
-//									String[] command = {"bat",path};
-//									Process process = Runtime.getRuntime().exec(command);
-//					
-//					String commandRead;
-//					 
-//					   BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
-//					    
-//					    while ((commandRead = stdInput.readLine()) != null) {
-//					    	
-//					    	System.out.println(commandRead);
-////					      log.info(commandRead);
-//					    }
-//					    BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-//					    while ((commandRead = stdError.readLine()) != null) {
-////					      log.info(commandRead);
-//					      System.out.println(commandRead);
-//					    }
-			return new ResponseEntity<DescuentoResponse>(response, HttpStatus.OK);
-//			
+			// Procesar la respuesta
+			if (statusCode.is2xxSuccessful()) {
+				String responseBody = response.getBody();
+				System.out.println("Respuesta: " + responseBody);
+				return responseBody;
+			} else {
+				System.err.println("Error al hacer la solicitud. Código de respuesta: " + statusCode.value());
+				return null;
+			}
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
