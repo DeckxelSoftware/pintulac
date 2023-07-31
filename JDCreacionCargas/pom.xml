@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ec.pintulac</groupId>
-	<artifactId>JDConsultaDescuentos</artifactId>
+	<artifactId>JDCreacionCargas</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>JD Descuento</name>
+	<name>JD CreacionCargas</name>
 	<description>Web services pintulac</description>
 	<properties>
 		<java.version>8</java.version>
@@ -107,7 +107,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>descuento8082</finalName>
+		<finalName>creacioncarga8083</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
