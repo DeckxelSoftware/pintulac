@@ -17,6 +17,9 @@ import org.springframework.web.client.RestTemplate;
 
 import com.ec.pintulac.request.DescuentoRequest;
 import com.ec.pintulac.response.DescuentoResponse;
+import com.ec.pintulac.utilitario.CredentialToken;
+import com.ec.pintulac.utilitario.GestionToken;
+import com.ec.pintulac.utilitario.TokenResponse;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,9 +29,15 @@ import io.swagger.annotations.ApiOperation;
 @Api(value = "Consumo de  descuentos", tags = "Descuentos", description = "Consumo de informacion desde aplicaciones de terceros")
 public class CotroladorGeneral {
 
-	@Value("${webservices.linko.ruta}")
+	@Value("${webservices.ruta}")
 	private String ruta;
+	@Value("${webservices.rutatoken}")
+	private String rutatoken;
 	
+	@Value("${user.token}")
+	private String userToken;
+	@Value("${password.token}")
+	private String passwordToken;
 
 
 	@RequestMapping(value = "/consulta_descuento", method = RequestMethod.POST)
@@ -42,6 +51,12 @@ public class CotroladorGeneral {
 			HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
 					HttpClientBuilder.create().build());
 			RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
+			
+			
+			
+			CredentialToken credentialToken = new CredentialToken(userToken, passwordToken);
+			TokenResponse token = GestionToken.obtenerToken(credentialToken, rutatoken);
+			
 			// create auth credentials
 			String authStr = "JDEDIS1:JDEDIS2";
 			String base64Creds = Base64.getEncoder().encodeToString(authStr.getBytes());

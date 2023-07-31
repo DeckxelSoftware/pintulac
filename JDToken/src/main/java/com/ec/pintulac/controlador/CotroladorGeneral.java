@@ -36,12 +36,12 @@ public class CotroladorGeneral {
 
 		try {
 
-			ruta="http://150.136.243.2:7070/jderest/v2/tokenrequest";
+			
 			HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
 					HttpClientBuilder.create().build());
 			RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
 			// create auth credentials
-			String authStr = "JDEDIS1:JDEDIS2";
+			String authStr = "JDESIF:JDESIF";
 			String base64Creds = Base64.getEncoder().encodeToString(authStr.getBytes());
 
 			// create headers
