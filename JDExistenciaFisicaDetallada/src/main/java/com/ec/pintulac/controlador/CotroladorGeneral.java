@@ -40,8 +40,8 @@ public class CotroladorGeneral {
 	@Value("${password.token}")
 	private String passwordToken;
 
-	@RequestMapping(value = "/creacion_carga", method = RequestMethod.POST)
-	@ApiOperation(tags = "creacion_carga", value = "Obtiene la creacion de carga")
+	@RequestMapping(value = "/consulta_existencia_fisica", method = RequestMethod.POST)
+	@ApiOperation(tags = "Existencia fisica", value = "Detallar las integraciones que permite consultar las existencias de un ítem, en este servicio se tiene acceso a información detallada del dato como: Lote, ubicación, compromisos, existencias.  ")
 	public ResponseEntity<?> descuento(@RequestBody ExistenciaFisicaRequest param) {
 
 		try {
