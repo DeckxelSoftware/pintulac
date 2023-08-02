@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api")
-@Api(value = "Consumo de  descuentos", tags = "Recuperar Token", description = "Consumo de informacion desde aplicaciones de terceros")
+@Api(value = "Consumo de  descuentos", tags = "Descuentos")
 public class CotroladorGeneral {
 
 	@Value("${webservices.linko.ruta}")
