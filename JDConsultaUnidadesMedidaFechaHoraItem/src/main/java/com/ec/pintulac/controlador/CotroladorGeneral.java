@@ -1,13 +1,8 @@
 package com.ec.pintulac.controlador;
-
 import java.util.Base64;
 
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,8 +13,10 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import com.ec.pintulac.request.ConsultaCostos1Request;
-import com.ec.pintulac.response.ConsultasCostos1Response;
+
+import com.ec.pintulac.request.ConsultaUnidadesMedidaFechaHoraItemRequest;
+import com.ec.pintulac.response.ConsultaUnidadesMedidaFechaHoraItemResponse;
+
 
 import org.springframework.http.*;
 
@@ -34,9 +31,9 @@ public class CotroladorGeneral {
 	@Value("${webservices.linko.ruta}")
 	private String ruta;
 
-	@PostMapping(value = "/ConsultasCostos1")
-	@ApiOperation(tags = "Consultas de costos alternatica 1", value = "Consultas de costos alternatica 1")
-	public ResponseEntity<?> obtenerConsultasCostos1(@RequestBody ConsultaCostos1Request requestBody) {
+	@PostMapping(value = "/ConsultaUnidadesMedidaFechaHoraIte")
+	@ApiOperation(tags = "Consulta Unidades de Medida por Fecha, Hora e Item", value = "Consulta Unidades de Medida por Fecha, Hora e Item")
+	public ResponseEntity<?> obtenerConsultaUnidadesMedidaFechaHoraItem(@RequestBody ConsultaUnidadesMedidaFechaHoraItemRequest requestBody) {
 		try {
 			HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
 					HttpClientBuilder.create().build());
@@ -49,17 +46,15 @@ public class CotroladorGeneral {
 			HttpHeaders headers = new HttpHeaders();
 			headers.add("Authorization", "Basic " + base64Creds);
 
-			HttpEntity<ConsultaCostos1Request> requestEntity = new HttpEntity<>(requestBody, headers);
-			ResponseEntity<ConsultasCostos1Response> response = restTemplate.exchange(ruta, HttpMethod.POST,
-					requestEntity, ConsultasCostos1Response.class);
+			HttpEntity<ConsultaUnidadesMedidaFechaHoraItemRequest> requestEntity = new HttpEntity<>(requestBody, headers);
+			ResponseEntity<ConsultaUnidadesMedidaFechaHoraItemResponse> response = restTemplate.exchange(ruta, HttpMethod.POST,
+					requestEntity, ConsultaUnidadesMedidaFechaHoraItemResponse.class);
 
 			HttpStatus statusCode = response.getStatusCode();
 
 			if (statusCode.is2xxSuccessful()) {
-				ConsultasCostos1Response consultasCostosResponse = response.getBody();
-				String token = consultasCostosResponse.getJdeStatus();
-				System.out.println(token);
-				return ResponseEntity.ok(consultasCostosResponse);
+				ConsultaUnidadesMedidaFechaHoraItemResponse consultasResponse = response.getBody();
+				return ResponseEntity.ok( consultasResponse);
 			} else {
 				System.err.println("Error al hacer la solicitud. Código de respuesta: " + statusCode.value());
 				return null;
