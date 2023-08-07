@@ -11,6 +11,7 @@ public class ExistenciaFisicaRequest {
 	public String fecha_Actualizacion;
 	@JsonProperty("Hora")
 	public String hora;
+	private  String token;
 
 	public String getCode_Sku() {
 		return code_Sku;
@@ -43,5 +44,15 @@ public class ExistenciaFisicaRequest {
 	public void setHora(String hora) {
 		this.hora = hora;
 	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+	
+	
 
 }
