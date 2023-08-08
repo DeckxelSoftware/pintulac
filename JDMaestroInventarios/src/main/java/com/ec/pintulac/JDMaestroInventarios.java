@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 
 @EnableScheduling
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class} )
+@SpringBootApplication
 public class JDMaestroInventarios extends SpringBootServletInitializer {
 
 
