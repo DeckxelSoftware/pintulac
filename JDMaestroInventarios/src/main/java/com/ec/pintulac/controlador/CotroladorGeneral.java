@@ -1,29 +1,18 @@
 package com.ec.pintulac.controlador;
-import java.util.Base64;
-
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpServerErrorException;
-import org.springframework.web.client.RestTemplate;
 
 import com.ec.pintulac.repository.RepositoryGenerico;
-import com.ec.pintulac.request.MaestroInventariosRequest;
-
 import com.ec.pintulac.response.ConnectorRequest1Data;
-import com.ec.pintulac.response.MaestroInventarioResponse;
 import com.ec.pintulac.services.ServicioGeneral;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-
-import org.springframework.http.*;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -110,7 +99,7 @@ public class CotroladorGeneral {
 //			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
 				Gson gson = new Gson();
 				String JSON = gson.toJson(param);
-				respuesta = generico.callStoreProcedureArray("DINAMIC.sp_json3_existencia", JSON);
+				respuesta = generico.callStoreProcedureArray("DINAMIC.sp_jsonin_maestro_inventario ", JSON);
 				System.out.println(i++ + ": " + respuesta);
 //			}
 			totalSum = (System.currentTimeMillis() - startTime);

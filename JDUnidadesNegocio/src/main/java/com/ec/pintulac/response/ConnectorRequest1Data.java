@@ -13,7 +13,7 @@ public class ConnectorRequest1Data {
 		super();
 	}
 
-	public List<Item> getItem() {
+	public List<Item> getItem() {	
 		return item;
 	}
 

@@ -115,7 +115,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>JDConsultaMaestroInventarios8083</finalName>
+		<finalName>JDConsultaMaestroInventarios8086</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

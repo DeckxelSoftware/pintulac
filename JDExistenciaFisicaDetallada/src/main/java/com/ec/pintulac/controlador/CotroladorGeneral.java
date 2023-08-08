@@ -10,14 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ec.pintulac.repository.RepositoryGenerico;
-import com.ec.pintulac.request.ExistenciaFisicaRequest;
 import com.ec.pintulac.response.ConnectorRequest1;
-import com.ec.pintulac.response.ExistenciaFisicaResponse;
-import com.ec.pintulac.response.Row;
 import com.ec.pintulac.services.ServicioGeneral;
-import com.ec.pintulac.utilitario.CredentialToken;
-import com.ec.pintulac.utilitario.GestionToken;
-import com.ec.pintulac.utilitario.TokenResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 

@@ -4,149 +4,150 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Row {
 	  @JsonProperty("HORA") 
-	    public int hORA;
+	    public int hora;
 	    @JsonProperty("COMPROMISO") 
-	    public int cOMPROMISO;
+	    public int compromiso;
 	    @JsonProperty("DISPONIBLE") 
-	    public double dISPONIBLE;
+	    public double disponible;
 	    @JsonProperty("COMPROMISO_FLEXIBLE_VENTAS") 
-	    public int cOMPROMISO_FLEXIBLE_VENTAS;
+	    public int compromisoFlexibleVentas;
 	    @JsonProperty("COMPROMISO_DURO_VENTAS") 
-	    public int cOMPROMISO_DURO_VENTAS;
+	    public int compromisoDuroVentas;
 	    @JsonProperty("CODEUM") 
-	    public String cODEUM;
+	    public String codeum;
 	    @JsonProperty("DES_UOM") 
-	    public String dES_UOM;
+	    public String desUom;
 	    @JsonProperty("FECHA_UPDATE") 
-	    public String fECHA_UPDATE;
+	    public String fechaUpdate;
 	    @JsonProperty("FECHA_UPDATE2") 
-	    public String fECHA_UPDATE2;
+	    public String fechaUpdate2;
 	    @JsonProperty("CODE_CORTO") 
-	    public int cODE_CORTO;
+	    public int codeCorto;
 	    @JsonProperty("CODE_BODEGA") 
-	    public String cODE_BODEGA;
+	    public String codeBodega;
 	    @JsonProperty("DES_BODEGA") 
-	    public String dES_BODEGA;
+	    public String desBodega;
 	    @JsonProperty("UBICACION_DEPOSITO") 
-	    public String uBICACION_DEPOSITO;
+	    public String ubicacionDeposito;
 	    @JsonProperty("LOTE") 
-	    public String lOTE;
+	    public String lote;
 	    @JsonProperty("EXISTENCIA_FISICA") 
-	    public double eXISTENCIA_FISICA;
+	    public double existenciaFisica;
 	    @JsonProperty("CODE_SKU") 
-	    public String cODE_SKU;
+	    public String codeSku;
 	    @JsonProperty("CODE_SKU3") 
-	    public String cODE_SKU3;
+	    public String codeSku3;
 	    @JsonProperty("DESCRIPCION_ITEM") 
-	    public String dESCRIPCION_ITEM;
-		public int gethORA() {
-			return hORA;
+	    public String descriptionItem;
+		public int getHora() {
+			return hora;
 		}
-		public void sethORA(int hORA) {
-			this.hORA = hORA;
+		public void setHora(int hora) {
+			this.hora = hora;
 		}
-		public int getcOMPROMISO() {
-			return cOMPROMISO;
+		public int getCompromiso() {
+			return compromiso;
 		}
-		public void setcOMPROMISO(int cOMPROMISO) {
-			this.cOMPROMISO = cOMPROMISO;
+		public void setCompromiso(int compromiso) {
+			this.compromiso = compromiso;
 		}
-		public double getdISPONIBLE() {
-			return dISPONIBLE;
+		public double getDisponible() {
+			return disponible;
 		}
-		public void setdISPONIBLE(double dISPONIBLE) {
-			this.dISPONIBLE = dISPONIBLE;
+		public void setDisponible(double disponible) {
+			this.disponible = disponible;
 		}
-		public int getcOMPROMISO_FLEXIBLE_VENTAS() {
-			return cOMPROMISO_FLEXIBLE_VENTAS;
+		public int getCompromisoFlexibleVentas() {
+			return compromisoFlexibleVentas;
 		}
-		public void setcOMPROMISO_FLEXIBLE_VENTAS(int cOMPROMISO_FLEXIBLE_VENTAS) {
-			this.cOMPROMISO_FLEXIBLE_VENTAS = cOMPROMISO_FLEXIBLE_VENTAS;
+		public void setCompromisoFlexibleVentas(int compromisoFlexibleVentas) {
+			this.compromisoFlexibleVentas = compromisoFlexibleVentas;
 		}
-		public int getcOMPROMISO_DURO_VENTAS() {
-			return cOMPROMISO_DURO_VENTAS;
+		public int getCompromisoDuroVentas() {
+			return compromisoDuroVentas;
 		}
-		public void setcOMPROMISO_DURO_VENTAS(int cOMPROMISO_DURO_VENTAS) {
-			this.cOMPROMISO_DURO_VENTAS = cOMPROMISO_DURO_VENTAS;
+		public void setCompromisoDuroVentas(int compromisoDuroVentas) {
+			this.compromisoDuroVentas = compromisoDuroVentas;
 		}
-		public String getcODEUM() {
-			return cODEUM;
+		public String getCodeum() {
+			return codeum;
 		}
-		public void setcODEUM(String cODEUM) {
-			this.cODEUM = cODEUM;
+		public void setCodeum(String codeum) {
+			this.codeum = codeum;
 		}
-		public String getdES_UOM() {
-			return dES_UOM;
+		public String getDesUom() {
+			return desUom;
 		}
-		public void setdES_UOM(String dES_UOM) {
-			this.dES_UOM = dES_UOM;
+		public void setDesUom(String desUom) {
+			this.desUom = desUom;
 		}
-		public String getfECHA_UPDATE() {
-			return fECHA_UPDATE;
+		public String getFechaUpdate() {
+			return fechaUpdate;
 		}
-		public void setfECHA_UPDATE(String fECHA_UPDATE) {
-			this.fECHA_UPDATE = fECHA_UPDATE;
+		public void setFechaUpdate(String fechaUpdate) {
+			this.fechaUpdate = fechaUpdate;
 		}
-		public String getfECHA_UPDATE2() {
-			return fECHA_UPDATE2;
+		public String getFechaUpdate2() {
+			return fechaUpdate2;
 		}
-		public void setfECHA_UPDATE2(String fECHA_UPDATE2) {
-			this.fECHA_UPDATE2 = fECHA_UPDATE2;
+		public void setFechaUpdate2(String fechaUpdate2) {
+			this.fechaUpdate2 = fechaUpdate2;
 		}
-		public int getcODE_CORTO() {
-			return cODE_CORTO;
+		public int getCodeCorto() {
+			return codeCorto;
 		}
-		public void setcODE_CORTO(int cODE_CORTO) {
-			this.cODE_CORTO = cODE_CORTO;
+		public void setCodeCorto(int codeCorto) {
+			this.codeCorto = codeCorto;
 		}
-		public String getcODE_BODEGA() {
-			return cODE_BODEGA;
+		public String getCodeBodega() {
+			return codeBodega;
 		}
-		public void setcODE_BODEGA(String cODE_BODEGA) {
-			this.cODE_BODEGA = cODE_BODEGA;
+		public void setCodeBodega(String codeBodega) {
+			this.codeBodega = codeBodega;
 		}
-		public String getdES_BODEGA() {
-			return dES_BODEGA;
+		public String getDesBodega() {
+			return desBodega;
 		}
-		public void setdES_BODEGA(String dES_BODEGA) {
-			this.dES_BODEGA = dES_BODEGA;
+		public void setDesBodega(String desBodega) {
+			this.desBodega = desBodega;
 		}
-		public String getuBICACION_DEPOSITO() {
-			return uBICACION_DEPOSITO;
+		public String getUbicacionDeposito() {
+			return ubicacionDeposito;
 		}
-		public void setuBICACION_DEPOSITO(String uBICACION_DEPOSITO) {
-			this.uBICACION_DEPOSITO = uBICACION_DEPOSITO;
+		public void setUbicacionDeposito(String ubicacionDeposito) {
+			this.ubicacionDeposito = ubicacionDeposito;
 		}
-		public String getlOTE() {
-			return lOTE;
+		public String getLote() {
+			return lote;
 		}
-		public void setlOTE(String lOTE) {
-			this.lOTE = lOTE;
+		public void setLote(String lote) {
+			this.lote = lote;
 		}
-		public double geteXISTENCIA_FISICA() {
-			return eXISTENCIA_FISICA;
+		public double getExistenciaFisica() {
+			return existenciaFisica;
 		}
-		public void seteXISTENCIA_FISICA(double eXISTENCIA_FISICA) {
-			this.eXISTENCIA_FISICA = eXISTENCIA_FISICA;
+		public void setExistenciaFisica(double existenciaFisica) {
+			this.existenciaFisica = existenciaFisica;
 		}
-		public String getcODE_SKU() {
-			return cODE_SKU;
+		public String getCodeSku() {
+			return codeSku;
 		}
-		public void setcODE_SKU(String cODE_SKU) {
-			this.cODE_SKU = cODE_SKU;
+		public void setCodeSku(String codeSku) {
+			this.codeSku = codeSku;
 		}
-		public String getcODE_SKU3() {
-			return cODE_SKU3;
+		public String getCodeSku3() {
+			return codeSku3;
 		}
-		public void setcODE_SKU3(String cODE_SKU3) {
-			this.cODE_SKU3 = cODE_SKU3;
+		public void setCodeSku3(String codeSku3) {
+			this.codeSku3 = codeSku3;
 		}
-		public String getdESCRIPCION_ITEM() {
-			return dESCRIPCION_ITEM;
+		public String getDescriptionItem() {
+			return descriptionItem;
 		}
-		public void setdESCRIPCION_ITEM(String dESCRIPCION_ITEM) {
-			this.dESCRIPCION_ITEM = dESCRIPCION_ITEM;
-		}	
+		public void setDescriptionItem(String descriptionItem) {
+			this.descriptionItem = descriptionItem;
+		}
+		
 	    
 	    
 }
