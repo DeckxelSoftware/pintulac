@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ec.pintulac</groupId>
-	<artifactId>JDConsultaUnidadesMedidaFechaHoraItem</artifactId>
+	<artifactId>JDExistenciasFisicasResumidas</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>JD Consulta Unidades Medida Fecha Hora Item</name>
+	<name>JD Ordenes Venta General</name>
 	<description>Web services pintulac</description>
 	<properties>
 		<java.version>8</java.version>
@@ -115,7 +115,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>JDConsultaUnidadesMedidaFechaHoraItem8089</finalName>
+		<finalName>JDExistenciasFisicasResumidas8087</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
