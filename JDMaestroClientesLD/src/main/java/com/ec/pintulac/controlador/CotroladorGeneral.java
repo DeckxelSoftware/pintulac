@@ -88,6 +88,7 @@ public class CotroladorGeneral {
 	public ResponseEntity<?> maestroClientes(@RequestBody MaestroClientesLDResponse param) {
 
 		try {
+
 			long totalSum = 0;
 			long startTime = System.currentTimeMillis();
 			int i = 0;
@@ -104,6 +105,7 @@ public class CotroladorGeneral {
 			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
 			return new ResponseEntity<String>(respuesta.toString(), HttpStatus.OK);
 //			
+
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
