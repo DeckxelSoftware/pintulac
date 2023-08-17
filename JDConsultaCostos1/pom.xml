@@ -12,7 +12,7 @@
 	<groupId>com.ec.pintulac</groupId>
 	<artifactId>JDConsultaDescuento1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>JD Ordenes Venta General</name>
+	<name>JD Consulta Descuento 1</name>
 	<description>Web services pintulac</description>
 	<properties>
 		<java.version>8</java.version>
@@ -107,7 +107,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>token8083</finalName>
+		<finalName>JDConsultaDescuento8082</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

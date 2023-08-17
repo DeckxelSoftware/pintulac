@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
-import com.ec.pintulac.request.CodigosCategoriaRequest;
-import com.ec.pintulac.response.CodigosCategoriaResponse;
+import com.ec.pintulac.request.MaestroClientesLDRequest;
+import com.ec.pintulac.response.MaestroClientesLDResponse;
 
 
 @Service
@@ -32,7 +32,7 @@ public class ServicioGeneral {
 	@Value("${password.token}")
 	private String passwordToken;
 
-	public CodigosCategoriaResponse invocarJDE(CodigosCategoriaRequest param) {
+	public MaestroClientesLDResponse invocarJDE(MaestroClientesLDRequest param) {
 		try {
 			HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
 					HttpClientBuilder.create().build());
@@ -45,14 +45,14 @@ public class ServicioGeneral {
 			HttpHeaders headers = new HttpHeaders();
 			headers.add("Authorization", "Basic " + base64Creds);
 
-			HttpEntity<CodigosCategoriaRequest> requestEntity = new HttpEntity<>(param, headers);
-			ResponseEntity<CodigosCategoriaResponse> response = restTemplate.exchange(ruta, HttpMethod.POST,
-					requestEntity, CodigosCategoriaResponse.class);
+			HttpEntity<MaestroClientesLDRequest> requestEntity = new HttpEntity<>(param, headers);
+			ResponseEntity<MaestroClientesLDResponse> response = restTemplate.exchange(ruta, HttpMethod.POST,
+					requestEntity, MaestroClientesLDResponse.class);
 
 			HttpStatus statusCode = response.getStatusCode();
 
 			if (statusCode.is2xxSuccessful()) {
-				CodigosCategoriaResponse consultasCostosResponse = response.getBody();
+				MaestroClientesLDResponse consultasCostosResponse = response.getBody();
 				
 				return consultasCostosResponse;
 			} else {

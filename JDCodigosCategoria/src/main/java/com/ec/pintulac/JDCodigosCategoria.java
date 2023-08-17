@@ -10,18 +10,18 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication
-public class JDMaestroInventarios extends SpringBootServletInitializer {
+public class JDCodigosCategoria extends SpringBootServletInitializer {
 
 
 
 	public static void main(String[] args) {
-		SpringApplication.run(JDMaestroInventarios.class, args);
+		SpringApplication.run(JDCodigosCategoria.class, args);
 	}
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 
-		return application.sources(JDMaestroInventarios.class);
+		return application.sources(JDCodigosCategoria.class);
 	}
 
 

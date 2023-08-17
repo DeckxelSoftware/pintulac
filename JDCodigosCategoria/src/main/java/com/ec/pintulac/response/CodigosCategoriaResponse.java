@@ -2,7 +2,7 @@ package com.ec.pintulac.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ExistenciasResumidasResponse {
+public class CodigosCategoriaResponse {
 	
 	@JsonProperty("ConnectorRequest1")
     private ConnectorRequest1Data connectorRequest1;

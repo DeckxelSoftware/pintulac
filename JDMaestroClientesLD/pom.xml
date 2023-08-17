@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ec.pintulac</groupId>
-	<artifactId>JDCodigosCategoria</artifactId>
+	<artifactId>JDMaestroClientesLD</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>JD Codigos Categoria</name>
+	<name>JD Maestro Clientes LD</name>
 	<description>Web services pintulac</description>
 	<properties>
 		<java.version>8</java.version>
@@ -115,7 +115,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>JDCodigosCategoria8091</finalName>
+		<finalName>JDMaestroClientesLD8092</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

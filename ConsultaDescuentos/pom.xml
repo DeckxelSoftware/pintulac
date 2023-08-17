@@ -12,7 +12,7 @@
 	<groupId>com.ec.pintulac</groupId>
 	<artifactId>JDConsultaDescuento</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>JD Conuslta Descuentos</name>
+	<name>JD Consulta Descuentos</name>
 	<description>Web services pintulac</description>
 	<properties>
 		<java.version>8</java.version>

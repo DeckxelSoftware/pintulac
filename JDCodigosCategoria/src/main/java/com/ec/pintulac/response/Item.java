@@ -4,180 +4,107 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Item {
 	
+	@JsonProperty("FECHA_ACTUALIZACION")
+	private String fechaActualizacion;
 
-    @JsonProperty("EXISTENCIA_FISICA")
-    private int existenciaFisica;
+	@JsonProperty("DESCRIPCION_COMPRIMIDA")
+	private String descripcionComprimida;
 
-    @JsonProperty("FECHA_UPDATE")
-    private String fechaUpdate;
+	@JsonProperty("SY")
+	private String sy;
 
-    @JsonProperty("HORA")
-    private String hora;
+	@JsonProperty("RT")
+	private String rt;
 
-    @JsonProperty("CODEUM")
-    private String codeUM;
+	@JsonProperty("KY")
+	private String ky;
 
-    @JsonProperty("DES_UOM")
-    private String desUOM;
+	@JsonProperty("DESCRIPCION1")
+	private String descripcion1;
 
-    @JsonProperty("DISPONIBLE")
-    private int disponible;
+	@JsonProperty("DESCRIPCION2")
+	private String descripcion2;
 
-    @JsonProperty("COMPROMISO")
-    private int compromiso;
+	@JsonProperty("GESTION_ESPECIAL")
+	private String gestionEspecial;
 
-    @JsonProperty("CODE_SKU")
-    private String codeSKU;
-
-    @JsonProperty("CODE_CORTO")
-    private int codeCorto;
-
-    @JsonProperty("DESCRIPCION_ITEM")
-    private String descripcionItem;
-
-    @JsonProperty("CODE_BODEGA")
-    private String codeBodega;
-
-    @JsonProperty("DES_BODEGA")
-    private String desBodega;
-
-    @JsonProperty("MAGENTO")
-    private String magento;
-
+	@JsonProperty("ACTIVO")
+	private String activo;
 
 	public Item() {
 		super();
 	}
 
-
-	public int getExistenciaFisica() {
-		return existenciaFisica;
+	public String getFechaActualizacion() {
+		return fechaActualizacion;
 	}
 
-
-	public void setExistenciaFisica(int existenciaFisica) {
-		this.existenciaFisica = existenciaFisica;
+	public void setFechaActualizacion(String fechaActualizacion) {
+		this.fechaActualizacion = fechaActualizacion;
 	}
 
-
-	public String getFechaUpdate() {
-		return fechaUpdate;
+	public String getDescripcionComprimida() {
+		return descripcionComprimida;
 	}
 
-
-	public void setFechaUpdate(String fechaUpdate) {
-		this.fechaUpdate = fechaUpdate;
+	public void setDescripcionComprimida(String descripcionComprimida) {
+		this.descripcionComprimida = descripcionComprimida;
 	}
 
-
-	public String getHora() {
-		return hora;
+	public String getSy() {
+		return sy;
 	}
 
-
-	public void setHora(String hora) {
-		this.hora = hora;
+	public void setSy(String sy) {
+		this.sy = sy;
 	}
 
-
-	public String getCodeUM() {
-		return codeUM;
+	public String getRt() {
+		return rt;
 	}
 
-
-	public void setCodeUM(String codeUM) {
-		this.codeUM = codeUM;
+	public void setRt(String rt) {
+		this.rt = rt;
 	}
 
-
-	public String getDesUOM() {
-		return desUOM;
+	public String getKy() {
+		return ky;
 	}
 
-
-	public void setDesUOM(String desUOM) {
-		this.desUOM = desUOM;
+	public void setKy(String ky) {
+		this.ky = ky;
 	}
 
-
-	public int getDisponible() {
-		return disponible;
+	public String getDescripcion1() {
+		return descripcion1;
 	}
 
-
-	public void setDisponible(int disponible) {
-		this.disponible = disponible;
+	public void setDescripcion1(String descripcion1) {
+		this.descripcion1 = descripcion1;
 	}
 
-
-	public int getCompromiso() {
-		return compromiso;
+	public String getDescripcion2() {
+		return descripcion2;
 	}
 
-
-	public void setCompromiso(int compromiso) {
-		this.compromiso = compromiso;
+	public void setDescripcion2(String descripcion2) {
+		this.descripcion2 = descripcion2;
 	}
 
-
-	public String getCodeSKU() {
-		return codeSKU;
+	public String getGestionEspecial() {
+		return gestionEspecial;
 	}
 
-
-	public void setCodeSKU(String codeSKU) {
-		this.codeSKU = codeSKU;
+	public void setGestionEspecial(String gestionEspecial) {
+		this.gestionEspecial = gestionEspecial;
 	}
 
-
-	public int getCodeCorto() {
-		return codeCorto;
+	public String getActivo() {
+		return activo;
 	}
 
-
-	public void setCodeCorto(int codeCorto) {
-		this.codeCorto = codeCorto;
+	public void setActivo(String activo) {
+		this.activo = activo;
 	}
-
-
-	public String getDescripcionItem() {
-		return descripcionItem;
-	}
-
-
-	public void setDescripcionItem(String descripcionItem) {
-		this.descripcionItem = descripcionItem;
-	}
-
-
-	public String getCodeBodega() {
-		return codeBodega;
-	}
-
-
-	public void setCodeBodega(String codeBodega) {
-		this.codeBodega = codeBodega;
-	}
-
-
-	public String getDesBodega() {
-		return desBodega;
-	}
-
-
-	public void setDesBodega(String desBodega) {
-		this.desBodega = desBodega;
-	}
-
-
-	public String getMagento() {
-		return magento;
-	}
-
-
-	public void setMagento(String magento) {
-		this.magento = magento;
-	}
-
 
 }

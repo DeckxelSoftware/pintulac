@@ -107,7 +107,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>token8083</finalName>
+		<finalName>JDOrdenesVentaGeneral8083</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

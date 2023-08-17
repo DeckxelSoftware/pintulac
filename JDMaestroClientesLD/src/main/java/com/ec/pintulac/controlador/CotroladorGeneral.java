@@ -18,9 +18,9 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import com.ec.pintulac.repository.RepositoryGenerico;
-import com.ec.pintulac.request.CodigosCategoriaRequest;
-import com.ec.pintulac.response.ConnectorRequest1Data;
-import com.ec.pintulac.response.CodigosCategoriaResponse;
+import com.ec.pintulac.request.MaestroClientesLDRequest;
+
+import com.ec.pintulac.response.MaestroClientesLDResponse;
 import com.ec.pintulac.services.ServicioGeneral;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -127,29 +127,29 @@ public class CotroladorGeneral {
 	
 	
 	
-	@PostMapping(value = "/codigos_categoria1")
-	@ApiOperation(tags = "Códigos categoria", value = "Este API le permite consultar la lista de valores de los campos de la creación de clientes asociados a códigos de categoría")
-	public CodigosCategoriaResponse obtener(@RequestBody CodigosCategoriaRequest param) {
+	@PostMapping(value = "/maestro_clientes_LD2")
+	@ApiOperation(tags = "maestro_clientes_LD2", value = "Detallar las integraciones que componen la interfaz de salida de maestro de clientes en el libro de direcciones.")
+	public MaestroClientesLDResponse obtener(@RequestBody MaestroClientesLDRequest param) {
 		try {
 			HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
 					HttpClientBuilder.create().build());
 			RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
 
-			String authStr = "JDEDIS1:JDEDIS2";
+			String authStr = "JDESIF:JDESIF";
 			String base64Creds = Base64.getEncoder().encodeToString(authStr.getBytes());
 
 			// create headers
 			HttpHeaders headers = new HttpHeaders();
 			headers.add("Authorization", "Basic " + base64Creds);
 
-			HttpEntity<CodigosCategoriaRequest> requestEntity = new HttpEntity<>(param, headers);
-			ResponseEntity<CodigosCategoriaResponse> response = restTemplate.exchange(ruta, HttpMethod.POST,
-					requestEntity, CodigosCategoriaResponse.class);
+			HttpEntity<MaestroClientesLDRequest> requestEntity = new HttpEntity<>(param, headers);
+			ResponseEntity<MaestroClientesLDResponse> response = restTemplate.exchange(ruta, HttpMethod.POST,
+					requestEntity, MaestroClientesLDResponse.class);
 
 			HttpStatus statusCode = response.getStatusCode();
 
 			if (statusCode.is2xxSuccessful()) {
-				CodigosCategoriaResponse consultasCostosResponse = response.getBody();
+				MaestroClientesLDResponse consultasCostosResponse = response.getBody();
 				
 				return consultasCostosResponse;
 			} else {
