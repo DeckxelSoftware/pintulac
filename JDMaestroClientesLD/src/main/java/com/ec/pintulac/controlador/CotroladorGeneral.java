@@ -131,6 +131,8 @@ public class CotroladorGeneral {
 	@ApiOperation(tags = "maestro_clientes_LD2", value = "Detallar las integraciones que componen la interfaz de salida de maestro de clientes en el libro de direcciones.")
 	public MaestroClientesLDResponse obtener(@RequestBody MaestroClientesLDRequest param) {
 		try {
+			
+			String ruta="http://150.136.243.2:7070/jderest/orchestrator/ORC_2306050002PIN";
 			HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
 					HttpClientBuilder.create().build());
 			RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
