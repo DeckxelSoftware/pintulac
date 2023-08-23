@@ -1,6 +1,6 @@
 package com.ec.pintulac.controlador;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,11 +22,11 @@ import io.swagger.annotations.ApiOperation;
 @Api(value = "Consumo de Ordenes de Unidades de Negocio", tags = "Unidades de Negocio")
 public class CotroladorGeneral {
 
-	
 	@Autowired
 	ServicioGeneral servicioGeneral;
 	@Autowired
 	RepositoryGenerico generico;
+
 //
 //	@PostMapping(value = "/UnidadesNegocio")
 //	@ApiOperation(tags = "UnidadesNegocio", value = "UnidadesNegocio")
@@ -87,14 +87,38 @@ public class CotroladorGeneral {
 //			ExistenciaFisicaResponse JSONJDE = servicioGeneral.invocarJDE(param);
 			System.out.println("NUM ELEMENTOS: " + param.getItem().size());
 //			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
-				Gson gson = new Gson();
-				String JSON = gson.toJson(param);
-				respuesta = generico.callStoreProcedureArray("DINAMIC.sp_jsonin_unidad_negocio", JSON);
-				System.out.println(i++ + ": " + respuesta);
+			Gson gson = new Gson();
+			String JSON = gson.toJson(param);
+			respuesta = generico.callStoreProcedureArray("DINAMIC.sp_jsonin_unidad_negocio", JSON);
+			System.out.println(i++ + ": " + respuesta);
 //			}
 			totalSum = (System.currentTimeMillis() - startTime);
 			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
 			return new ResponseEntity<String>(respuesta.toString(), HttpStatus.OK);
+//			
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+
+	}
+
+	@RequestMapping(value = "/modelo", method = RequestMethod.POST)
+	@ApiOperation(tags = "Modelo BDD", value = "Modelo BDD")
+	public ResponseEntity<?> modelo(@RequestBody ConnectorRequest1Data param) {
+
+		try {
+			long totalSum = 0;
+			long startTime = System.currentTimeMillis();
+			int i = 0;
+
+			Gson gson = new Gson();
+			String JSON = gson.toJson(param);
+
+			totalSum = (System.currentTimeMillis() - startTime);
+			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
+			return new ResponseEntity<String>(JSON.toString(), HttpStatus.OK);
 //			
 
 		} catch (Exception ex) {

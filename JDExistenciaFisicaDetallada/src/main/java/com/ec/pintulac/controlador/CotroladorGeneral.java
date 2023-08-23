@@ -112,10 +112,10 @@ public class CotroladorGeneral {
 //			ExistenciaFisicaResponse JSONJDE = servicioGeneral.invocarJDE(param);
 			System.out.println("NUM ELEMENTOS: " + param.getRows().size());
 //			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
-				Gson gson = new Gson();
-				String JSON = gson.toJson(param);
-				respuesta = generico.callStoreProcedureArray("DINAMIC.sp_json3_existencia", JSON);
-				System.out.println(i++ + ": " + respuesta);
+			Gson gson = new Gson();
+			String JSON = gson.toJson(param);
+			respuesta = generico.callStoreProcedureArray("DINAMIC.sp_json3_existencia", JSON);
+			System.out.println(i++ + ": " + respuesta);
 //			}
 			totalSum = (System.currentTimeMillis() - startTime);
 			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
@@ -128,5 +128,24 @@ public class CotroladorGeneral {
 		}
 
 	}
-	
+
+	@RequestMapping(value = "/modelo", method = RequestMethod.POST)
+	@ApiOperation(tags = "Modelo BBD", value = "Modelo BBD")
+	public ResponseEntity<?> modelo(@RequestBody ConnectorRequest1 param) {
+
+		try {
+
+			Gson gson = new Gson();
+			String JSON = gson.toJson(param);
+
+			return new ResponseEntity<String>(JSON.toString(), HttpStatus.OK);
+//			
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+
+	}
+
 }
