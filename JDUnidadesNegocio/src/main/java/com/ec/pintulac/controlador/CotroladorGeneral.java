@@ -27,54 +27,6 @@ public class CotroladorGeneral {
 	@Autowired
 	RepositoryGenerico generico;
 
-//
-//	@PostMapping(value = "/UnidadesNegocio")
-//	@ApiOperation(tags = "UnidadesNegocio", value = "UnidadesNegocio")
-//	public ResponseEntity<?> obtenerConsultasCostos2(@RequestBody UnidadesNegocioRequest requestBody) {
-//		try {
-//			HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
-//					HttpClientBuilder.create().build());
-//			RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
-//
-//			String authStr = "JDEDIS1:JDEDIS2";
-//			String base64Creds = Base64.getEncoder().encodeToString(authStr.getBytes());
-//
-//			// create headers
-//			HttpHeaders headers = new HttpHeaders();
-//			headers.add("Authorization", "Basic " + base64Creds);
-//
-//			HttpEntity<UnidadesNegocioRequest> requestEntity = new HttpEntity<>(requestBody, headers);
-//			ResponseEntity<UnidadesNegocioResponse> response = restTemplate.exchange(ruta, HttpMethod.POST,
-//					requestEntity, UnidadesNegocioResponse.class);
-//
-//			HttpStatus statusCode = response.getStatusCode();
-//
-//			if (statusCode.is2xxSuccessful()) {
-//				UnidadesNegocioResponse consultasCostosResponse = response.getBody();
-//				
-//				return ResponseEntity.ok(consultasCostosResponse);
-//			} else {
-//				System.err.println("Error al hacer la solicitud. Código de respuesta: " + statusCode.value());
-//				return null;
-//			}
-//
-//		}
-//
-//		catch (HttpClientErrorException | HttpServerErrorException ex) {
-//			// Catch specific exceptions for handling errors
-//			System.err.println("Error during API request: " + ex.getMessage());
-//			// Handle the error response here
-//			// You can get the error response body using ex.getResponseBodyAsString()
-//			return ResponseEntity.status(ex.getStatusCode()).body("Por favor revise los datos ingresados"+ResponseEntity.status(400));
-//		}
-//
-//		catch (Exception ex) {
-//			ex.printStackTrace();
-//			return null;
-//		}
-//
-//	}
-//	
 	@RequestMapping(value = "/unidades_negocio", method = RequestMethod.POST)
 	@ApiOperation(tags = "Unidades de negocio ", value = "Detallar las integraciones que componen la interfaz de salida de unidades de negocio")
 	public ResponseEntity<?> existenciaJDE(@RequestBody Object param) {
@@ -104,29 +56,7 @@ public class CotroladorGeneral {
 
 	}
 
-	@RequestMapping(value = "/modelo", method = RequestMethod.POST)
-	@ApiOperation(tags = "Modelo BDD", value = "Modelo BDD")
-	public ResponseEntity<?> modelo(@RequestBody UnidadNegocioResponse param) {
 
-		try {
-			long totalSum = 0;
-			long startTime = System.currentTimeMillis();
-			int i = 0;
-
-			Gson gson = new Gson();
-			String JSON = gson.toJson(param);
-
-			totalSum = (System.currentTimeMillis() - startTime);
-			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
-			return new ResponseEntity<String>(JSON.toString(), HttpStatus.OK);
-//			
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return null;
-		}
-
-	}
 	
 	@RequestMapping(value = "/modelo-obj", method = RequestMethod.POST)
 	@ApiOperation(tags = "Modelo BDD", value = "Modelo BDD")
