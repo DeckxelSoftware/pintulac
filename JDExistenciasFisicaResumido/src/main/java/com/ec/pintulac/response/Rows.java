@@ -2,7 +2,7 @@ package com.ec.pintulac.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Item {
+public class Rows {
 	
 
     @JsonProperty("EXISTENCIA_FISICA")
@@ -45,7 +45,7 @@ public class Item {
     private String magento;
 
 
-	public Item() {
+	public Rows() {
 		super();
 	}
 

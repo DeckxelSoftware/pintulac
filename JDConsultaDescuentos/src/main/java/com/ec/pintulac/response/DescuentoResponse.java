@@ -2,94 +2,63 @@ package com.ec.pintulac.response;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class DescuentoResponse {
-	@JsonProperty("Nom ajuste 1")
-	public String nomAjuste1;
-	@JsonProperty("Fecha vto 1")
-	public String fechaVto1;
-	@JsonProperty("Clasf mcía 1")
-	public String clasfMcía1;
-	@JsonProperty("Result")
-	public boolean result;
-	@JsonProperty("SD Descuentos x Item")
-	public SDDescuentosXItem sDDescuentosxItem;
-	public String jde__status;
-	public Date jde__startTimestamp;
-	public Date jde__endTimestamp;
-	public double jde__serverExecutionSeconds;
 
-	public String getNomAjuste1() {
-		return nomAjuste1;
-	}
+    @JsonProperty("Nom_ajuste")
+    private String nomAjuste;
 
-	public void setNomAjuste1(String nomAjuste1) {
-		this.nomAjuste1 = nomAjuste1;
-	}
+    @JsonProperty("Descripcion")
+    private String descripcion;
 
-	public String getFechaVto1() {
-		return fechaVto1;
-	}
+    @JsonProperty("2_n_articulo")
+    private String nArticulo;
 
-	public void setFechaVto1(String fechaVto1) {
-		this.fechaVto1 = fechaVto1;
-	}
+    @JsonProperty("Valor_factor_nmco")
+    private int valorFactorNmco;
 
-	public String getClasfMcía1() {
-		return clasfMcía1;
-	}
+    @JsonProperty("Fecha_efectiva")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date fechaEfectiva;
 
-	public void setClasfMcía1(String clasfMcía1) {
-		this.clasfMcía1 = clasfMcía1;
-	}
+    @JsonProperty("Fecha_vto")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date fechaVto;
 
-	public boolean isResult() {
-		return result;
-	}
+    @JsonProperty("ID_clave_gp_clnt")
+    private int idClaveGpClnt;
 
-	public void setResult(boolean result) {
-		this.result = result;
-	}
+    @JsonProperty("Linea_descripcion_2")
+    private String lineaDescripcion2;
 
-	public SDDescuentosXItem getsDDescuentosxItem() {
-		return sDDescuentosxItem;
-	}
+    @JsonProperty("Linea_descr_3")
+    private String lineaDescr3;
 
-	public void setsDDescuentosxItem(SDDescuentosXItem sDDescuentosxItem) {
-		this.sDDescuentosxItem = sDDescuentosxItem;
-	}
+    @JsonProperty("Clasf_mcia")
+    private String clasfMcia;
 
-	public String getJde__status() {
-		return jde__status;
-	}
+    @JsonProperty("Fecha_actz")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date fechaActz;
 
-	public void setJde__status(String jde__status) {
-		this.jde__status = jde__status;
-	}
+    @JsonProperty("Hora_dia")
+    private int horaDia;
 
-	public Date getJde__startTimestamp() {
-		return jde__startTimestamp;
-	}
+    @JsonProperty("jde__status")
+    private String jdeStatus;
 
-	public void setJde__startTimestamp(Date jde__startTimestamp) {
-		this.jde__startTimestamp = jde__startTimestamp;
-	}
+    @JsonProperty("jde__startTimestamp")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    private Date jdeStartTimestamp;
 
-	public Date getJde__endTimestamp() {
-		return jde__endTimestamp;
-	}
+    @JsonProperty("jde__endTimestamp")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    private Date jdeEndTimestamp;
 
-	public void setJde__endTimestamp(Date jde__endTimestamp) {
-		this.jde__endTimestamp = jde__endTimestamp;
-	}
+    @JsonProperty("jde__serverExecutionSeconds")
+    private double jdeServerExecutionSeconds;
 
-	public double getJde__serverExecutionSeconds() {
-		return jde__serverExecutionSeconds;
-	}
-
-	public void setJde__serverExecutionSeconds(double jde__serverExecutionSeconds) {
-		this.jde__serverExecutionSeconds = jde__serverExecutionSeconds;
-	}
 
 }

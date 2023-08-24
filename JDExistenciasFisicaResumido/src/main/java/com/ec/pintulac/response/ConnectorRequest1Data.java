@@ -7,18 +7,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ConnectorRequest1Data {
 	
 	 @JsonProperty("rows")
-     private List<Item> item;
+     private List<Rows> rows;
 
 	public ConnectorRequest1Data() {
 		super();
 	}
 
-	public List<Item> getItem() {
-		return item;
+	public List<Rows> getItem() {
+		return rows;
 	}
 
-	public void setItem(List<Item> item) {
-		this.item = item;
+	public void setItem(List<Rows> rows) {
+		this.rows = rows;
 	}
 	 
 	 

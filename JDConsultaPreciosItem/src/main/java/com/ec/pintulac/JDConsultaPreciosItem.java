@@ -10,18 +10,18 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication
-public class JDDescuentosApplication extends SpringBootServletInitializer {
+public class JDConsultaPreciosItem extends SpringBootServletInitializer {
 
 
 
 	public static void main(String[] args) {
-		SpringApplication.run(JDDescuentosApplication.class, args);
+		SpringApplication.run(JDConsultaPreciosItem.class, args);
 	}
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 
-		return application.sources(JDDescuentosApplication.class);
+		return application.sources(JDConsultaPreciosItem.class);
 	}
 
 

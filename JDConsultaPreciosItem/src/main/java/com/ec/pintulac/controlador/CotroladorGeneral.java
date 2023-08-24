@@ -17,9 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.ec.pintulac.repository.RepositoryGenerico;
-import com.ec.pintulac.request.ExistenciasResumidasRequest;
-import com.ec.pintulac.response.ConnectorRequest1Data;
-import com.ec.pintulac.response.ExistenciasResumidasResponse;
+import com.ec.pintulac.request.ConsultasPreciosItemRequest;
+import com.ec.pintulac.response.ConsutasPreciosItemResponse;
 import com.ec.pintulac.services.ServicioGeneral;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -96,9 +95,9 @@ public class CotroladorGeneral {
 //
 //	}
 	
-	@PostMapping(value = "/consultas_existencias_resumidas")
+	@PostMapping(value = "/consulta_precios_item")
 	@ApiOperation(tags = "Modelo BDD", value = "Modelo BDD")
-	public ResponseEntity<?> consultas_mestroInventario(@RequestBody ConnectorRequest1Data param) {
+	public ResponseEntity<?> consultas_mestroInventario(@RequestBody ConsutasPreciosItemResponse param) {
 		try {
 //			long totalSum = 0;
 //			long startTime = System.currentTimeMillis();
