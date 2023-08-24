@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.ec.pintulac.request.UnidadesNegocioRequest;
-import com.ec.pintulac.response.UnidadesNegocioResponse;
+import com.ec.pintulac.response.UnidadNegocioResponse;
 import com.ec.pintulac.utilitario.CredentialToken;
 import com.ec.pintulac.utilitario.GestionToken;
-import com.ec.pintulac.utilitario.TokenResponse;
+import com.ec.pintulac.utilitario.TokenResponse;	
 
 @Service
 public class ServicioGeneral {
@@ -28,7 +28,7 @@ public class ServicioGeneral {
 	@Value("${password.token}")
 	private String passwordToken;
 
-	public UnidadesNegocioResponse invocarJDE(UnidadesNegocioRequest param) {
+	public UnidadNegocioResponse invocarJDE(UnidadesNegocioRequest param) {
 
 		HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
 				HttpClientBuilder.create().build());
@@ -48,8 +48,8 @@ public class ServicioGeneral {
 
 		// create request
 		HttpEntity<UnidadesNegocioRequest> requestBody = new HttpEntity<UnidadesNegocioRequest>(param, headers);
-		UnidadesNegocioResponse response = restTemplate.postForObject(ruta, requestBody,
-				UnidadesNegocioResponse.class);
+		UnidadNegocioResponse response = restTemplate.postForObject(ruta, requestBody,
+				UnidadNegocioResponse.class);
 
 	
 
