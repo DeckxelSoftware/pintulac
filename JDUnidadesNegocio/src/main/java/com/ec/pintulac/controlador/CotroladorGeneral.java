@@ -26,9 +26,39 @@ public class CotroladorGeneral {
 	@Autowired
 	RepositoryGenerico generico;
 
-	@RequestMapping(value = "/unidades_negocio", method = RequestMethod.POST)
-	@ApiOperation(tags = "Unidades de negocio ", value = "Detallar las integraciones que componen la interfaz de salida de unidades de negocio")
-	public ResponseEntity<?> existenciaJDE(@RequestBody Object param) {
+	@RequestMapping(value = "/unidades_negocio_bodeda", method = RequestMethod.POST)
+	@ApiOperation(tags = "Unidades de negocio bodega ", value = "Detallar las integraciones que componen la interfaz de salida de unidades de negocio")
+	public ResponseEntity<?> unidadNegocioBode(@RequestBody Object param) {
+
+		try {
+			long totalSum = 0;
+			long startTime = System.currentTimeMillis();
+			int i = 0;
+			JsonObject respuesta = new JsonObject();
+//			ExistenciaFisicaResponse JSONJDE = servicioGeneral.invocarJDE(param);
+//			System.out.println("NUM ELEMENTOS: " + param.getRows().size());
+//			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
+			Gson gson = new Gson();
+			String JSON = gson.toJson(param);
+			respuesta = generico.callStoreProcedureArray("DINAMIC.sp_jsonin_unidad_negocio", JSON);
+			System.out.println(i++ + ": " + respuesta);
+//			}
+			totalSum = (System.currentTimeMillis() - startTime);
+			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
+			return new ResponseEntity<String>(respuesta.toString(), HttpStatus.OK);
+//			
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+
+	}
+
+	
+	@RequestMapping(value = "/unidades_negocio_sucursal", method = RequestMethod.POST)
+	@ApiOperation(tags = "Unidades de negocio sucursal ", value = "Detallar las integraciones que componen la interfaz de salida de unidades de negocio")
+	public ResponseEntity<?> unidadNegocio(@RequestBody Object param) {
 
 		try {
 			long totalSum = 0;
