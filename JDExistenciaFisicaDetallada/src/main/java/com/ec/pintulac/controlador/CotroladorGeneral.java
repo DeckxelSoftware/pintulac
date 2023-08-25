@@ -38,68 +38,6 @@ public class CotroladorGeneral {
 	@Autowired
 	RepositoryGenerico generico;
 
-//	@RequestMapping(value = "/consulta_existencia_fisica", method = RequestMethod.POST)
-//	@ApiOperation(tags = "Existencia fisica", value = "Detallar las integraciones que permite consultar las existencias de un ítem, en este servicio se tiene acceso a información detallada del dato como: Lote, ubicación, compromisos, existencias.  ")
-//	public ResponseEntity<?> descuento(@RequestBody ExistenciaFisicaRequest param) {
-//
-//		try {
-//			long totalSum = 0;
-//			long startTime = System.currentTimeMillis();
-//			int i = 0;
-//			JsonObject respuesta = new JsonObject();
-//			ExistenciaFisicaResponse JSONJDE = servicioGeneral.invocarJDE(param);
-//			System.out.println("NUM ELEMENTOS: " + JSONJDE.getConnectorRequest1().getRows().size());
-//			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
-//				Gson gson = new Gson();
-//				String JSON = gson.toJson(item);
-//				respuesta = generico.callStoreProcedure("DINAMIC.sp_json3_existencia", JSON);
-//				System.out.println(i++ + ": " + respuesta);
-//			}
-//			totalSum = (System.currentTimeMillis() - startTime);
-//			System.out.println("Tiempo ejecucion" + (totalSum / 1000) / 60);
-//			return new ResponseEntity<String>(respuesta.toString(), HttpStatus.OK);
-////			
-//
-//		} catch (Exception ex) {
-//			ex.printStackTrace();
-//			return null;
-//		}
-//
-//	}
-//
-//	
-//	@RequestMapping(value = "/consulta_existencia_fisica_array", method = RequestMethod.POST)
-//	@ApiOperation(tags = "Existencia fisica array", value = "Detallar las integraciones que permite consultar las existencias de un ítem, en este servicio se tiene acceso a información detallada del dato como: Lote, ubicación, compromisos, existencias.  ")
-//	public ResponseEntity<?> existenciaArray(@RequestBody ExistenciaFisicaRequest param) {
-//
-//		try {
-//			
-//		
-//			
-//			long totalSum = 0;
-//			long startTime = System.currentTimeMillis();
-//			int i = 0;
-//			JsonObject respuesta = new JsonObject();
-//			ExistenciaFisicaResponse JSONJDE = servicioGeneral.invocarJDE(param);
-//			System.out.println("NUM ELEMENTOS: " + JSONJDE.getConnectorRequest1().getRows().size());
-////			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
-//				Gson gson = new Gson();
-//				String JSON = gson.toJson(JSONJDE.getConnectorRequest1());
-//				respuesta = generico.callStoreProcedureArray("DINAMIC.sp_json3_existencia", JSON);
-//				System.out.println(i++ + ": " + respuesta);
-////			}
-//			totalSum = (System.currentTimeMillis() - startTime);
-//			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
-//			return new ResponseEntity<String>(respuesta.toString(), HttpStatus.OK);
-////			
-//
-//		} catch (Exception ex) {
-//			ex.printStackTrace();
-//			return null;
-//		}
-//
-//	}
-//	
 	@RequestMapping(value = "/existencia_jde", method = RequestMethod.POST)
 	@ApiOperation(tags = "Existencia fisica jde", value = "Detallar las integraciones que permite consultar las existencias de un ítem, en este servicio se tiene acceso a información detallada del dato como: Lote, ubicación, compromisos, existencias.  ")
 	public ResponseEntity<?> existenciaJDE(@RequestBody ConnectorRequest1 param) {

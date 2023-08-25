@@ -13,6 +13,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -49,56 +50,36 @@ public class CotroladorGeneral {
 	@Value("${password.token}")
 	private String passwordToken;
 
-//	@PostMapping(value = "/consultas_mestroInventario")
-//	@ApiOperation(tags = "ConsultasMestro de Inventarios", value = "ConsultasMestro de Inventarios")
-//	public ResponseEntity<?> obtenerConsultasCostos2(@RequestBody MaestroInventariosRequest requestBody) {
-//		try {
-//			HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
-//					HttpClientBuilder.create().build());
-//			RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
-//
-//			String authStr = "JDEDIS1:JDEDIS2";
-//			String base64Creds = Base64.getEncoder().encodeToString(authStr.getBytes());
-//
-//			// create headers
-//			HttpHeaders headers = new HttpHeaders();
-//			headers.add("Authorization", "Basic " + base64Creds);
-//
-//			HttpEntity<MaestroInventariosRequest> requestEntity = new HttpEntity<>(requestBody, headers);
-//			ResponseEntity<MaestroInventarioResponse> response = restTemplate.exchange(ruta, HttpMethod.POST,
-//					requestEntity, MaestroInventarioResponse.class);
-//
-//			HttpStatus statusCode = response.getStatusCode();
-//
-//			if (statusCode.is2xxSuccessful()) {
-//				MaestroInventarioResponse consultasCostosResponse = response.getBody();
-//				
-//				return ResponseEntity.ok(consultasCostosResponse);
-//			} else {
-//				System.err.println("Error al hacer la solicitud. Código de respuesta: " + statusCode.value());
-//				return null;
+
+	@RequestMapping(value = "/existencia_resumido", method = RequestMethod.POST)
+	@ApiOperation(tags = "Existencia resumida ", value = "Existencia resumida")
+	public ResponseEntity<?> api(@RequestBody Object param) {
+
+		try {
+			long totalSum = 0;
+			long startTime = System.currentTimeMillis();
+			int i = 0;
+			JsonObject respuesta = new JsonObject();
+			Gson gson = new Gson();
+			String JSON = gson.toJson(param);
+			respuesta = generico.callStoreProcedureArray("DINAMIC.sp_jsonin_unidad_negocio", JSON);
+			System.out.println(i++ + ": " + respuesta);
 //			}
-//
-//		}
-//
-//		catch (HttpClientErrorException | HttpServerErrorException ex) {
-//			// Catch specific exceptions for handling errors
-//			System.err.println("Error during API request: " + ex.getMessage());
-//			// Handle the error response here
-//			// You can get the error response body using ex.getResponseBodyAsString()
-//			return ResponseEntity.status(ex.getStatusCode()).body("Por favor revise los datos ingresados"+ResponseEntity.status(400));
-//		}
-//
-//		catch (Exception ex) {
-//			ex.printStackTrace();
-//			return null;
-//		}
-//
-//	}
-	
+			totalSum = (System.currentTimeMillis() - startTime);
+			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
+			return new ResponseEntity<String>(respuesta.toString(), HttpStatus.OK);
+//			
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+
+	}
+
 	@PostMapping(value = "/consultas_existencias_resumidas")
 	@ApiOperation(tags = "Modelo BDD", value = "Modelo BDD")
-	public ResponseEntity<?> consultas_mestroInventario(@RequestBody ConnectorRequest1Data param) {
+	public ResponseEntity<?> consultas_mestroInventario(@RequestBody Object param) {
 		try {
 //			long totalSum = 0;
 //			long startTime = System.currentTimeMillis();
@@ -127,51 +108,5 @@ public class CotroladorGeneral {
 	
 	
 	
-//	@PostMapping(value = "/consultas_existencias_resumida2")
-//	@ApiOperation(tags = "ConsultasMestro de Inventarios", value = "Detallar las integraciones que componen la interfaz de salida para paso de existencias físicas resumido.")
-//	public ExistenciasResumidasResponse obtener(@RequestBody ExistenciasResumidasRequest param) {
-//		try {
-//			HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
-//					HttpClientBuilder.create().build());
-//			RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
-//
-//			String authStr = "JDEDIS1:JDEDIS2";
-//			String base64Creds = Base64.getEncoder().encodeToString(authStr.getBytes());
-//
-//			// create headers
-//			HttpHeaders headers = new HttpHeaders();
-//			headers.add("Authorization", "Basic " + base64Creds);
-//
-//			HttpEntity<ExistenciasResumidasRequest> requestEntity = new HttpEntity<>(param, headers);
-//			ResponseEntity<ExistenciasResumidasResponse> response = restTemplate.exchange(ruta, HttpMethod.POST,
-//					requestEntity, ExistenciasResumidasResponse.class);
-//
-//			HttpStatus statusCode = response.getStatusCode();
-//
-//			if (statusCode.is2xxSuccessful()) {
-//				ExistenciasResumidasResponse consultasCostosResponse = response.getBody();
-//				
-//				return consultasCostosResponse;
-//			} else {
-//				System.err.println("Error al hacer la solicitud. Código de respuesta: " + statusCode.value());
-//				return null;
-//			}
-//
-//		}
-//
-////		catch (HttpClientErrorException | HttpServerErrorException ex) {
-////			// Catch specific exceptions for handling errors
-////			System.err.println("Error during API request: " + ex.getMessage());
-////			// Handle the error response here
-////			// You can get the error response body using ex.getResponseBodyAsString()
-////			return ResponseEntity.status(ex.getStatusCode()).body("Por favor revise los datos ingresados"+ResponseEntity.status(400));
-////		}
-//
-//		catch (Exception ex) {
-//			ex.printStackTrace();
-//			return null;
-//		}
-//
-//	}
 
 }

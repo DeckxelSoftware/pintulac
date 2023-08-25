@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ec.pintulac.repository.RepositoryGenerico;
-import com.ec.pintulac.response.UnidadNegocioResponse;
 import com.ec.pintulac.services.ServicioGeneral;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
