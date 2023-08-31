@@ -159,13 +159,7 @@ public class CotroladorGeneral {
 
 		}
 
-//		catch (HttpClientErrorException | HttpServerErrorException ex) {
-//			// Catch specific exceptions for handling errors
-//			System.err.println("Error during API request: " + ex.getMessage());
-//			// Handle the error response here
-//			// You can get the error response body using ex.getResponseBodyAsString()
-//			return ResponseEntity.status(ex.getStatusCode()).body("Por favor revise los datos ingresados"+ResponseEntity.status(400));
-//		}
+
 
 		catch (Exception ex) {
 			ex.printStackTrace();
