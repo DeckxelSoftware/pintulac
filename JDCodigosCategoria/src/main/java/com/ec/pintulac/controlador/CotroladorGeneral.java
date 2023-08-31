@@ -110,7 +110,14 @@ public class CotroladorGeneral {
 			return new ResponseEntity<String>(respuesta.toString(), HttpStatus.OK);
 //			
 
+
 		} catch (Exception ex) {
+
+			
+
+
+
+	
 			ex.printStackTrace();
 			return null;
 		}

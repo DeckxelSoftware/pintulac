@@ -15,8 +15,7 @@ import com.google.gson.JsonObject;
 public class RepositoryGenerico {
 	@PersistenceContext
 	EntityManager entityManager;
-	
-	
+
 	@Transactional
 	public JsonObject callStoreProcedure(String procedureName, String params) {
 		JsonObject jsonObject = new JsonObject();
@@ -27,15 +26,15 @@ public class RepositoryGenerico {
 			query.registerStoredProcedureParameter("json_param", String.class, ParameterMode.OUT);
 			query.setParameter("json_param1", params);
 
-			 query.execute();
+			query.execute();
 
 			String json = (String) query.getOutputParameterValue("json_param");
 			jsonObject = new Gson().fromJson(json, JsonObject.class);
 
 		} catch (Exception e) {
 			// TODO: handle exception
-			return jsonObject = new Gson().fromJson("{\"estado\":false, \"message\":\"error en el procedimiento Java\"}",
-					JsonObject.class);
+			return jsonObject = new Gson()
+					.fromJson("{\"estado\":false, \"message\":\"error en el procedimiento Java\"}", JsonObject.class);
 		}
 
 		return jsonObject;
@@ -45,26 +44,28 @@ public class RepositoryGenerico {
 	public JsonObject callStoreProcedureArray(String procedureName, String params) {
 		JsonObject jsonObject = new JsonObject();
 		try {
+
+			Thread.sleep(500);
 			StoredProcedureQuery query = this.entityManager.createStoredProcedureQuery(procedureName);
 
 			query.registerStoredProcedureParameter("json_param1", String.class, ParameterMode.IN);
 			query.registerStoredProcedureParameter("json_param", String.class, ParameterMode.OUT);
 			query.setParameter("json_param1", params);
 
-			 query.execute();
+			query.execute();
 
 			String json = (String) query.getOutputParameterValue("json_param");
 			jsonObject = new Gson().fromJson(json, JsonObject.class);
 
 		} catch (Exception e) {
 			// TODO: handle exception
-			return jsonObject = new Gson().fromJson("{\"estado\":false, \"message\":\"error en el procedimiento Java\"}",
-					JsonObject.class);
+			return jsonObject = new Gson()
+					.fromJson("{\"estado\":false, \"message\":\"error en el procedimiento Java\"}", JsonObject.class);
 		}
 
 		return jsonObject;
 	}
-	
+
 //	@SuppressWarnings({ "unchecked" })
 //	
 //	public JsonObject callProcedurev2(String procedureName, String params) {
