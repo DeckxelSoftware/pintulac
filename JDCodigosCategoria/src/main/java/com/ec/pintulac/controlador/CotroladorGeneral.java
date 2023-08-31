@@ -1,4 +1,5 @@
 package com.ec.pintulac.controlador;
+
 import java.util.Base64;
 
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -13,6 +14,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -35,24 +37,14 @@ public class CotroladorGeneral {
 
 	@Autowired
 	ServicioGeneral servicioGeneral;
-	
+
 	@Autowired
 	RepositoryGenerico generico;
-	
-	@Value("${webservices.linko.ruta}")
-	private String ruta;
-	
-	@Value("${webservices.rutatoken}")
-	private String rutatoken;
-	
-	@Value("${user.token}")
-	private String userToken;
-	@Value("${password.token}")
-	private String passwordToken;
 
-//	@PostMapping(value = "/consultas_mestroInventario")
-//	@ApiOperation(tags = "ConsultasMestro de Inventarios", value = "ConsultasMestro de Inventarios")
-//	public ResponseEntity<?> obtenerConsultasCostos2(@RequestBody MaestroInventariosRequest requestBody) {
+//	
+//	@PostMapping(value = "/codigos_categoria1")
+//	@ApiOperation(tags = "Códigos categoria", value = "Este API le permite consultar la lista de valores de los campos de la creación de clientes asociados a códigos de categoría")
+//	public CodigosCategoriaResponse obtener(@RequestBody CodigosCategoriaRequest param) {
 //		try {
 //			HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
 //					HttpClientBuilder.create().build());
@@ -65,16 +57,16 @@ public class CotroladorGeneral {
 //			HttpHeaders headers = new HttpHeaders();
 //			headers.add("Authorization", "Basic " + base64Creds);
 //
-//			HttpEntity<MaestroInventariosRequest> requestEntity = new HttpEntity<>(requestBody, headers);
-//			ResponseEntity<MaestroInventarioResponse> response = restTemplate.exchange(ruta, HttpMethod.POST,
-//					requestEntity, MaestroInventarioResponse.class);
+//			HttpEntity<CodigosCategoriaRequest> requestEntity = new HttpEntity<>(param, headers);
+//			ResponseEntity<CodigosCategoriaResponse> response = restTemplate.exchange(ruta, HttpMethod.POST,
+//					requestEntity, CodigosCategoriaResponse.class);
 //
 //			HttpStatus statusCode = response.getStatusCode();
 //
 //			if (statusCode.is2xxSuccessful()) {
-//				MaestroInventarioResponse consultasCostosResponse = response.getBody();
+//				CodigosCategoriaResponse consultasCostosResponse = response.getBody();
 //				
-//				return ResponseEntity.ok(consultasCostosResponse);
+//				return consultasCostosResponse;
 //			} else {
 //				System.err.println("Error al hacer la solicitud. Código de respuesta: " + statusCode.value());
 //				return null;
@@ -82,13 +74,13 @@ public class CotroladorGeneral {
 //
 //		}
 //
-//		catch (HttpClientErrorException | HttpServerErrorException ex) {
-//			// Catch specific exceptions for handling errors
-//			System.err.println("Error during API request: " + ex.getMessage());
-//			// Handle the error response here
-//			// You can get the error response body using ex.getResponseBodyAsString()
-//			return ResponseEntity.status(ex.getStatusCode()).body("Por favor revise los datos ingresados"+ResponseEntity.status(400));
-//		}
+////		catch (HttpClientErrorException | HttpServerErrorException ex) {
+////			// Catch specific exceptions for handling errors
+////			System.err.println("Error during API request: " + ex.getMessage());
+////			// Handle the error response here
+////			// You can get the error response body using ex.getResponseBodyAsString()
+////			return ResponseEntity.status(ex.getStatusCode()).body("Por favor revise los datos ingresados"+ResponseEntity.status(400));
+////		}
 //
 //		catch (Exception ex) {
 //			ex.printStackTrace();
@@ -96,82 +88,56 @@ public class CotroladorGeneral {
 //		}
 //
 //	}
-	
-//	@PostMapping(value = "/consultas_envios")
-//	@ApiOperation(tags = "Consultas envios", value = "Detallar integración para salida de envíos")
-//	public ResponseEntity<?> consultas_mestroInventario(@RequestBody ConnectorRequest1Data param) {
-//		try {
-//			long totalSum = 0;
-//			long startTime = System.currentTimeMillis();
-//			int i = 0;
-//			JsonObject respuesta = new JsonObject();
-////			ExistenciaFisicaResponse JSONJDE = servicioGeneral.invocarJDE(param);
-//			System.out.println("NUM ELEMENTOS: " + param.getItem().size());
-////			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
-//				Gson gson = new Gson();
-//				String JSON = gson.toJson(param);
-//				respuesta = generico.callStoreProcedureArray("DINAMIC.sp_jsonin_maestro_inventario ", JSON);
-//				System.out.println(i++ + ": " + respuesta);
-////			}
-//			totalSum = (System.currentTimeMillis() - startTime);
-//			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
-//			return new ResponseEntity<String>(respuesta.toString(), HttpStatus.OK);
-////			
-//
-//		} catch (Exception ex) {
-//			ex.printStackTrace();
-//			return null;
-//		}
-//
-//	}
-	
-	
-	
-	@PostMapping(value = "/codigos_categoria1")
+	@PostMapping(value = "/codigos_categoria")
 	@ApiOperation(tags = "Códigos categoria", value = "Este API le permite consultar la lista de valores de los campos de la creación de clientes asociados a códigos de categoría")
-	public CodigosCategoriaResponse obtener(@RequestBody CodigosCategoriaRequest param) {
+	public ResponseEntity<?> unidadNegocioBode(@RequestBody Object param) {
+
 		try {
-			HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
-					HttpClientBuilder.create().build());
-			RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
+			long totalSum = 0;
+			long startTime = System.currentTimeMillis();
+			int i = 0;
+			JsonObject respuesta = new JsonObject();
+//			ExistenciaFisicaResponse JSONJDE = servicioGeneral.invocarJDE(param);
+//			System.out.println("NUM ELEMENTOS: " + param.getRows().size());
+//			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
+			Gson gson = new Gson();
+			String JSON = gson.toJson(param);
+			respuesta = generico.callStoreProcedureArray("DINAMIC.test", JSON);
+			System.out.println(i++ + ": " + respuesta);
+//			}
+			totalSum = (System.currentTimeMillis() - startTime);
+			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
+			return new ResponseEntity<String>(respuesta.toString(), HttpStatus.OK);
+//			
 
-			String authStr = "JDEDIS1:JDEDIS2";
-			String base64Creds = Base64.getEncoder().encodeToString(authStr.getBytes());
-
-			// create headers
-			HttpHeaders headers = new HttpHeaders();
-			headers.add("Authorization", "Basic " + base64Creds);
-
-			HttpEntity<CodigosCategoriaRequest> requestEntity = new HttpEntity<>(param, headers);
-			ResponseEntity<CodigosCategoriaResponse> response = restTemplate.exchange(ruta, HttpMethod.POST,
-					requestEntity, CodigosCategoriaResponse.class);
-
-			HttpStatus statusCode = response.getStatusCode();
-
-			if (statusCode.is2xxSuccessful()) {
-				CodigosCategoriaResponse consultasCostosResponse = response.getBody();
-				
-				return consultasCostosResponse;
-			} else {
-				System.err.println("Error al hacer la solicitud. Código de respuesta: " + statusCode.value());
-				return null;
-			}
-
-		}
-
-//		catch (HttpClientErrorException | HttpServerErrorException ex) {
-//			// Catch specific exceptions for handling errors
-//			System.err.println("Error during API request: " + ex.getMessage());
-//			// Handle the error response here
-//			// You can get the error response body using ex.getResponseBodyAsString()
-//			return ResponseEntity.status(ex.getStatusCode()).body("Por favor revise los datos ingresados"+ResponseEntity.status(400));
-//		}
-
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
 			return null;
 		}
 
 	}
 
+	@RequestMapping(value = "/modelo-obj", method = RequestMethod.POST)
+	@ApiOperation(tags = "Modelo BDD", value = "Modelo BDD")
+	public ResponseEntity<?> modelo(@RequestBody Object param) {
+
+		try {
+			long totalSum = 0;
+			long startTime = System.currentTimeMillis();
+			int i = 0;
+
+			Gson gson = new Gson();
+			String JSON = gson.toJson(param);
+
+			totalSum = (System.currentTimeMillis() - startTime);
+			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
+			return new ResponseEntity<String>(JSON.toString(), HttpStatus.OK);
+//			
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+
+	}
 }

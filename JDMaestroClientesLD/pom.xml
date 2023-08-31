@@ -103,7 +103,7 @@
 		</dependencies>
 	</dependencyManagement>
 	<build>
-		<finalName>JDMaestroClientesLD8092</finalName>
+		<finalName>JDMaestroClientesLD8891</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

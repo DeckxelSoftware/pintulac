@@ -51,7 +51,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>microservicejde8090</finalName>
+		<finalName>microservicejde_8881</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

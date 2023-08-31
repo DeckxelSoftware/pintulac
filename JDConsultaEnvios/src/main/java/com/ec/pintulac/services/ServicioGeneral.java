@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
-import com.ec.pintulac.request.ExistenciasResumidasRequest;
-import com.ec.pintulac.response.ExistenciasResumidasResponse;
+import com.ec.pintulac.request.MaestroInventariosRequest;
+import com.ec.pintulac.response.MaestroInventarioResponse;
 
 
 @Service
@@ -32,7 +32,7 @@ public class ServicioGeneral {
 	@Value("${password.token}")
 	private String passwordToken;
 
-	public ExistenciasResumidasResponse invocarJDE(ExistenciasResumidasRequest param) {
+	public MaestroInventarioResponse invocarJDE(MaestroInventariosRequest param) {
 		try {
 			HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
 					HttpClientBuilder.create().build());
@@ -45,14 +45,14 @@ public class ServicioGeneral {
 			HttpHeaders headers = new HttpHeaders();
 			headers.add("Authorization", "Basic " + base64Creds);
 
-			HttpEntity<ExistenciasResumidasRequest> requestEntity = new HttpEntity<>(param, headers);
-			ResponseEntity<ExistenciasResumidasResponse> response = restTemplate.exchange(ruta, HttpMethod.POST,
-					requestEntity, ExistenciasResumidasResponse.class);
+			HttpEntity<MaestroInventariosRequest> requestEntity = new HttpEntity<>(param, headers);
+			ResponseEntity<MaestroInventarioResponse> response = restTemplate.exchange(ruta, HttpMethod.POST,
+					requestEntity, MaestroInventarioResponse.class);
 
 			HttpStatus statusCode = response.getStatusCode();
 
 			if (statusCode.is2xxSuccessful()) {
-				ExistenciasResumidasResponse consultasCostosResponse = response.getBody();
+				MaestroInventarioResponse consultasCostosResponse = response.getBody();
 				
 				return consultasCostosResponse;
 			} else {

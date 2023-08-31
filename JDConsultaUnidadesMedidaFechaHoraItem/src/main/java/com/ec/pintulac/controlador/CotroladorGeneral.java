@@ -34,7 +34,7 @@ public class CotroladorGeneral {
 
 	@Value("${webservices.linko.ruta}")
 	private String ruta;
-	
+
 	@Autowired
 	RepositoryGenerico generico;
 
@@ -83,25 +83,78 @@ public class CotroladorGeneral {
 //		}
 //
 //	}
-	@PostMapping(value = "/consultas_maestroInventario")
-	@ApiOperation(tags = "ConsultasMestro de Inventarios", value = "Detallar las integraciones que componen la interfaz de salida de maestro de items")
-	public ResponseEntity<?> consultas_mestroInventario(@RequestBody SDComunicacionUnidadesMedida param) {
+//	@PostMapping(value = "/consultas_maestroInventario")
+//	@ApiOperation(tags = "ConsultasMestro de Inventarios", value = "Detallar las integraciones que componen la interfaz de salida de maestro de items")
+//	public ResponseEntity<?> consultas_mestroInventario(@RequestBody SDComunicacionUnidadesMedida param) {
+//		try {
+//			long totalSum = 0;
+//			long startTime = System.currentTimeMillis();
+//			int i = 0;
+//			JsonObject respuesta = new JsonObject();
+////			ExistenciaFisicaResponse JSONJDE = servicioGeneral.invocarJDE(param);
+//			System.out.println("NUM ELEMENTOS: " + param.getRowset().size());
+////			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
+//			Gson gson = new Gson();
+//			String JSON = gson.toJson(param);
+//			respuesta = generico.callStoreProcedureArray("sp_jsonin_unidMedid_itemFec", JSON);
+//			System.out.println(i++ + ": " + respuesta);
+////			}
+//			totalSum = (System.currentTimeMillis() - startTime);
+//			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
+//			return new ResponseEntity<String>(respuesta.toString(), HttpStatus.OK);
+////			
+//
+//		} catch (Exception ex) {
+//			ex.printStackTrace();
+//			return null;
+//		}
+//
+//	}
+
+	@PostMapping(value = "/ConsultaUnidadesMedidaFechaHoraIte")
+	@ApiOperation(tags = "Consulta Unidades de Medida por Fecha, Hora e Item", value = "Consulta Unidades de Medida por Fecha, Hora e Item")
+	public ResponseEntity<?> unidadNegocio(@RequestBody Object param) {
+
 		try {
 			long totalSum = 0;
 			long startTime = System.currentTimeMillis();
 			int i = 0;
 			JsonObject respuesta = new JsonObject();
 //			ExistenciaFisicaResponse JSONJDE = servicioGeneral.invocarJDE(param);
-			System.out.println("NUM ELEMENTOS: " + param.getRowset().size());
+//			System.out.println("NUM ELEMENTOS: " + param.getRows().size());
 //			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
 			Gson gson = new Gson();
 			String JSON = gson.toJson(param);
-			respuesta = generico.callStoreProcedureArray("sp_jsonin_unidMedid_itemFec", JSON);
+			respuesta = generico.callStoreProcedureArray("DINAMIC.sp_test", JSON);
 			System.out.println(i++ + ": " + respuesta);
 //			}
 			totalSum = (System.currentTimeMillis() - startTime);
 			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
 			return new ResponseEntity<String>(respuesta.toString(), HttpStatus.OK);
+//			
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+
+	}
+
+	@RequestMapping(value = "/modelo-obj", method = RequestMethod.POST)
+	@ApiOperation(tags = "Modelo BDD", value = "Modelo BDD")
+	public ResponseEntity<?> modelo(@RequestBody Object param) {
+
+		try {
+			long totalSum = 0;
+			long startTime = System.currentTimeMillis();
+			int i = 0;
+
+			Gson gson = new Gson();
+			String JSON = gson.toJson(param);
+
+			totalSum = (System.currentTimeMillis() - startTime);
+			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
+			return new ResponseEntity<String>(JSON.toString(), HttpStatus.OK);
 //			
 
 		} catch (Exception ex) {

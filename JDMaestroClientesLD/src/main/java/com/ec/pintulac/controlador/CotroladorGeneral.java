@@ -1,4 +1,5 @@
 package com.ec.pintulac.controlador;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -24,22 +25,10 @@ public class CotroladorGeneral {
 
 	@Autowired
 	ServicioGeneral servicioGeneral;
-	
+
 	@Autowired
 	RepositoryGenerico generico;
-	
-	@Value("${webservices.linko.ruta}")
-	private String ruta;
-	
-	@Value("${webservices.rutatoken}")
-	private String rutatoken;
-	
-	@Value("${user.token}")
-	private String userToken;
-	@Value("${password.token}")
-	private String passwordToken;
 
-	
 //	
 //	@PostMapping(value = "/maestro_clientes_est")
 //	@ApiOperation(tags = "maestro_clientes_LD2", value = "Detallar las integraciones que componen la interfaz de salida de maestro de clientes en el libro de direcciones.")
@@ -81,10 +70,9 @@ public class CotroladorGeneral {
 //		}
 //
 //	}
-	
-	
+
 	@RequestMapping(value = "/maestro_clientes_LD2", method = RequestMethod.POST)
-	@ApiOperation(tags = "maestro_clientes_LD2", value = "Registrar o actulizar marcas")
+	@ApiOperation(tags = "maestro_clientes_LD2", value = "Detallar las integraciones que componen la interfaz de salida de maestro de clientes en el libro de direcciones.")
 	public ResponseEntity<?> maestroClientes(@RequestBody MaestroClientesLDResponse param) {
 
 		try {
@@ -94,18 +82,41 @@ public class CotroladorGeneral {
 			int i = 0;
 			JsonObject respuesta = new JsonObject();
 //			ExistenciaFisicaResponse JSONJDE = servicioGeneral.invocarJDE(param);
-			
+
 //			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
-				Gson gson = new Gson();
-				String JSON = gson.toJson(param);
-				respuesta = generico.callStoreProcedureArray("DINAMIC.sp_json3_existencia", JSON);
-				System.out.println(i++ + ": " + respuesta);
+			Gson gson = new Gson();
+			String JSON = gson.toJson(param);
+			respuesta = generico.callStoreProcedureArray("DINAMIC.test", JSON);
+			System.out.println(i++ + ": " + respuesta);
 //			}
 			totalSum = (System.currentTimeMillis() - startTime);
 			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
 			return new ResponseEntity<String>(respuesta.toString(), HttpStatus.OK);
 //			
 
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+
+	}
+
+	@RequestMapping(value = "/modelo-obj", method = RequestMethod.POST)
+	@ApiOperation(tags = "Modelo BDD", value = "Modelo BDD")
+	public ResponseEntity<?> modelo(@RequestBody Object param) {
+
+		try {
+			long totalSum = 0;
+			long startTime = System.currentTimeMillis();
+			int i = 0;
+
+			Gson gson = new Gson();
+			String JSON = gson.toJson(param);
+
+			totalSum = (System.currentTimeMillis() - startTime);
+			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
+			return new ResponseEntity<String>(JSON.toString(), HttpStatus.OK);
+//			
 
 		} catch (Exception ex) {
 			ex.printStackTrace();

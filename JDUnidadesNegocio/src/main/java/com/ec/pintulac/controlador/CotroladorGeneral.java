@@ -7,12 +7,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.ec.pintulac.repository.RepositoryGenerico;
 import com.ec.pintulac.services.ServicioGeneral;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
