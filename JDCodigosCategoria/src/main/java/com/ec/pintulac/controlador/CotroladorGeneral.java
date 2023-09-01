@@ -41,53 +41,61 @@ public class CotroladorGeneral {
 	@Autowired
 	RepositoryGenerico generico;
 
-//	
-//	@PostMapping(value = "/codigos_categoria1")
-//	@ApiOperation(tags = "Códigos categoria", value = "Este API le permite consultar la lista de valores de los campos de la creación de clientes asociados a códigos de categoría")
-//	public CodigosCategoriaResponse obtener(@RequestBody CodigosCategoriaRequest param) {
-//		try {
-//			HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
-//					HttpClientBuilder.create().build());
-//			RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
-//
-//			String authStr = "JDEDIS1:JDEDIS2";
-//			String base64Creds = Base64.getEncoder().encodeToString(authStr.getBytes());
-//
-//			// create headers
-//			HttpHeaders headers = new HttpHeaders();
-//			headers.add("Authorization", "Basic " + base64Creds);
-//
-//			HttpEntity<CodigosCategoriaRequest> requestEntity = new HttpEntity<>(param, headers);
-//			ResponseEntity<CodigosCategoriaResponse> response = restTemplate.exchange(ruta, HttpMethod.POST,
-//					requestEntity, CodigosCategoriaResponse.class);
-//
-//			HttpStatus statusCode = response.getStatusCode();
-//
-//			if (statusCode.is2xxSuccessful()) {
-//				CodigosCategoriaResponse consultasCostosResponse = response.getBody();
-//				
-//				return consultasCostosResponse;
-//			} else {
-//				System.err.println("Error al hacer la solicitud. Código de respuesta: " + statusCode.value());
-//				return null;
-//			}
-//
-//		}
-//
-////		catch (HttpClientErrorException | HttpServerErrorException ex) {
-////			// Catch specific exceptions for handling errors
-////			System.err.println("Error during API request: " + ex.getMessage());
-////			// Handle the error response here
-////			// You can get the error response body using ex.getResponseBodyAsString()
-////			return ResponseEntity.status(ex.getStatusCode()).body("Por favor revise los datos ingresados"+ResponseEntity.status(400));
-////		}
-//
-//		catch (Exception ex) {
-//			ex.printStackTrace();
-//			return null;
-//		}
-//
-//	}
+	//
+	// @PostMapping(value = "/codigos_categoria1")
+	// @ApiOperation(tags = "Códigos categoria", value = "Este API le permite
+	// consultar la lista de valores de los campos de la creación de clientes
+	// asociados a códigos de categoría")
+	// public CodigosCategoriaResponse obtener(@RequestBody CodigosCategoriaRequest
+	// param) {
+	// try {
+	// HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new
+	// HttpComponentsClientHttpRequestFactory(
+	// HttpClientBuilder.create().build());
+	// RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
+	//
+	// String authStr = "JDEDIS1:JDEDIS2";
+	// String base64Creds = Base64.getEncoder().encodeToString(authStr.getBytes());
+	//
+	// // create headers
+	// HttpHeaders headers = new HttpHeaders();
+	// headers.add("Authorization", "Basic " + base64Creds);
+	//
+	// HttpEntity<CodigosCategoriaRequest> requestEntity = new HttpEntity<>(param,
+	// headers);
+	// ResponseEntity<CodigosCategoriaResponse> response =
+	// restTemplate.exchange(ruta, HttpMethod.POST,
+	// requestEntity, CodigosCategoriaResponse.class);
+	//
+	// HttpStatus statusCode = response.getStatusCode();
+	//
+	// if (statusCode.is2xxSuccessful()) {
+	// CodigosCategoriaResponse consultasCostosResponse = response.getBody();
+	//
+	// return consultasCostosResponse;
+	// } else {
+	// System.err.println("Error al hacer la solicitud. Código de respuesta: " +
+	// statusCode.value());
+	// return null;
+	// }
+	//
+	// }
+	//
+	//// catch (HttpClientErrorException | HttpServerErrorException ex) {
+	//// // Catch specific exceptions for handling errors
+	//// System.err.println("Error during API request: " + ex.getMessage());
+	//// // Handle the error response here
+	//// // You can get the error response body using ex.getResponseBodyAsString()
+	//// return ResponseEntity.status(ex.getStatusCode()).body("Por favor revise los
+	// datos ingresados"+ResponseEntity.status(400));
+	//// }
+	//
+	// catch (Exception ex) {
+	// ex.printStackTrace();
+	// return null;
+	// }
+	//
+	// }
 	@PostMapping(value = "/codigos_categoria")
 	@ApiOperation(tags = "Códigos categoria", value = "Este API le permite consultar la lista de valores de los campos de la creación de clientes asociados a códigos de categoría")
 	public ResponseEntity<?> unidadNegocioBode(@RequestBody Object param) {
@@ -97,27 +105,21 @@ public class CotroladorGeneral {
 			long startTime = System.currentTimeMillis();
 			int i = 0;
 			JsonObject respuesta = new JsonObject();
-//			ExistenciaFisicaResponse JSONJDE = servicioGeneral.invocarJDE(param);
-//			System.out.println("NUM ELEMENTOS: " + param.getRows().size());
-//			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
+			// ExistenciaFisicaResponse JSONJDE = servicioGeneral.invocarJDE(param);
+			// System.out.println("NUM ELEMENTOS: " + param.getRows().size());
+			// for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
 			Gson gson = new Gson();
 			String JSON = gson.toJson(param);
 			respuesta = generico.callStoreProcedureArray("DINAMIC.test", JSON);
 			System.out.println(i++ + ": " + respuesta);
-//			}
+			// }
 			totalSum = (System.currentTimeMillis() - startTime);
 			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
 			return new ResponseEntity<String>(respuesta.toString(), HttpStatus.OK);
-//			
-
+			//
 
 		} catch (Exception ex) {
 
-			
-
-
-
-	
 			ex.printStackTrace();
 			return null;
 		}
@@ -139,7 +141,7 @@ public class CotroladorGeneral {
 			totalSum = (System.currentTimeMillis() - startTime);
 			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
 			return new ResponseEntity<String>(JSON.toString(), HttpStatus.OK);
-//			
+			//
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
