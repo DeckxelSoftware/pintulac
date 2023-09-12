@@ -103,7 +103,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>JDConsultaDescuentos8094</finalName>
+		<finalName>JDConsultaDescuentos8892</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

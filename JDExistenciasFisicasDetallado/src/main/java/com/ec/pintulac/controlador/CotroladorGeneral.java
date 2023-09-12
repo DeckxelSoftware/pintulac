@@ -30,7 +30,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api")
-@Api(value = "Consumo de Ordenes de Venta General", tags = "Ordenes de Venta General")
+@Api(value = "existencia fisica detallada", tags = "existencia fisica detallada")
 public class CotroladorGeneral {
 
 	@Autowired
@@ -80,8 +80,8 @@ public class CotroladorGeneral {
 //
 //	}
 
-	@PostMapping(value = "/ordenesVentaGeneral")
-	@ApiOperation(tags = "Ordenes Venta General", value = "Detallar las integraciones que componen la interfaz de salida de pedidos.")
+	@PostMapping(value = "/existencia_fisica_detallada")
+	@ApiOperation(tags = "existencia fisica detallada", value = "Detallar las integraciones que componen la interfaz de salida para paso de existencias físicas detallada.")
 	public ResponseEntity<?> unidadNegocio(@RequestBody Object param) {
 
 		try {

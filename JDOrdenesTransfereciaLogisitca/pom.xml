@@ -103,7 +103,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>JDOrdenesTranferenciaLogistica8895</finalName>
+		<finalName>JDOrdenesTranferenciaLogistica8899</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

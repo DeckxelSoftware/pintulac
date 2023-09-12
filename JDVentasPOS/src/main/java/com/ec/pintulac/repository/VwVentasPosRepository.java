@@ -8,6 +8,6 @@ import com.ec.pintulac.entidad.VwJdeVentasPos;
 
 @SuppressWarnings("unused")
 @Repository
-public interface VwVentasPosRepository  extends JpaRepository<VwJdeVentasPos, Integer>{
+public interface VwVentasPosRepository  extends JpaRepository<VwJdeVentasPos, String>{
 
 }
