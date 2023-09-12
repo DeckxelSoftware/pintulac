@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: Darwin
+Build-Jdk: 16.0.1
+Implementation-Title: JD Descuento
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.ec.pintulac
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/JDConsultaDescuentos
+Created-By: Maven Integration for Eclipse
+
