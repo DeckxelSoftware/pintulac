@@ -1,4 +1,5 @@
 package com.ec.pintulac.controlador;
+
 import java.util.Base64;
 
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -29,16 +30,15 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api")
-@Api(value = "Consumo de Ordenes de Venta General", tags = "Ordenes de Venta General")
+@Api(value = "existencia fisica detallada", tags = "existencia fisica detallada")
 public class CotroladorGeneral {
 
-	@Value("${webservices.linko.ruta}")
-	private String ruta;
-	
 	@Autowired
 	RepositoryGenerico generico;
-
-//	@PostMapping(value = "/ordenesVentaGeneral")
+//	@Value("${webservices.linko.ruta}")
+//	private String ruta;
+//
+//	@PostMapping(value = "/OrdenesVentaGeneral")
 //	@ApiOperation(tags = "Ordenes Venta General", value = "Ordenes Venta General")
 //	public OrdenVentaGeneralResponse obtenerOrdenesVentaGeneral(@RequestBody OrdenVentasGeneralRequest requestBody) {
 //		try {
@@ -79,8 +79,9 @@ public class CotroladorGeneral {
 //		}
 //
 //	}
-	@PostMapping(value = "/ordenesVentaGeneral")
-	@ApiOperation(tags = "Consumo de Ordenes de Venta General", value = "Ordenes de Venta General")
+
+	@PostMapping(value = "/existencia_fisica_detallada")
+	@ApiOperation(tags = "existencia fisica detallada", value = "Detallar las integraciones que componen la interfaz de salida para paso de existencias físicas detallada.")
 	public ResponseEntity<?> unidadNegocio(@RequestBody Object param) {
 
 		try {
@@ -93,7 +94,7 @@ public class CotroladorGeneral {
 //			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
 			Gson gson = new Gson();
 			String JSON = gson.toJson(param);
-			respuesta = generico.callStoreProcedureArray("DINAMIC.sp_test", JSON);
+			respuesta = generico.callStoreProcedureArray("DINAMIC.sp_jsonin_unidad_negocio", JSON);
 			System.out.println(i++ + ": " + respuesta);
 //			}
 			totalSum = (System.currentTimeMillis() - startTime);

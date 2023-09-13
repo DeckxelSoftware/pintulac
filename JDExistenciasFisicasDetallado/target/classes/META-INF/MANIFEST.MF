@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Build-Jdk-Spec: 16
+=======
+Build-Jdk-Spec: 17
+>>>>>>> aa13386e380270ae5ae8b89cdf9cf0fbd489f849
 Implementation-Title: JDExistenciasFisicasDetallado
 Implementation-Version: 0.0.1-SNAPSHOT
 Implementation-Vendor: Pivotal Software, Inc.

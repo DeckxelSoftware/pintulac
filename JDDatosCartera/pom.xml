@@ -103,7 +103,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>JDDatosCartera8097</finalName>
+		<finalName>JDDatosCartera8895</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

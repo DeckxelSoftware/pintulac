@@ -11,8 +11,8 @@ import javax.persistence.Table;
 @Table(name = "VW_JDE_VENTA_POS")
 public class VwJdeVentasPos {
 	@Id
-	@Column(name = "ID_VW_VENTAS_POS")
-	private Integer idVwVentasPos;
+	@Column(name = "FACTURA")
+	private String factura;
 
 	@Column(name = "XXX")
 	private String xxx;
@@ -21,18 +21,19 @@ public class VwJdeVentasPos {
 		super();
 	}
 
-	public VwJdeVentasPos(Integer idVwVentasPos, String xxx) {
+	public VwJdeVentasPos(String factura, String xxx) {
 		super();
-		this.idVwVentasPos = idVwVentasPos;
+		this.factura = factura;
 		this.xxx = xxx;
 	}
 
-	public Integer getIdVwVentasPos() {
-		return idVwVentasPos;
+	
+	public String getFactura() {
+		return factura;
 	}
 
-	public void setIdVwVentasPos(Integer idVwVentasPos) {
-		this.idVwVentasPos = idVwVentasPos;
+	public void setFactura(String factura) {
+		this.factura = factura;
 	}
 
 	public String getXxx() {
