@@ -44,14 +44,11 @@ public class ControladorGeneral {
 			if (!ventas.isEmpty()) {
 
 				for (VwJdeVentasPos items : ventas) {
-<<<<<<< HEAD
+
 					response=	servicioGeneral.invocarVentasPos(items);
 					
 					
-=======
-					//lista datos 
-					listaDatos.add(items.getXxx());
->>>>>>> 5f1940aa80afa5b39b02a1d5b8ca05575f63d1d6
+
 				}
 
 				return new ResponseEntity<>(response, HttpStatus.OK);
