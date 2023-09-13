@@ -10,9 +10,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ec.pintulac</groupId>
-	<artifactId>JDVentasPOS</artifactId>
+	<artifactId>JDVentasLogistica</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>JD Ventas POS</name>
+	<name>JD Ventas Logisitca</name>
 	<description>Web services pintulac</description>
 	<properties>
 		<java.version>8</java.version>
@@ -70,11 +70,7 @@
 			<artifactId>mybatis-plus-boot-starter</artifactId>
 			<version>3.1.0</version>
 		</dependency>
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.10</version>
-		</dependency>
+	
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
@@ -107,7 +103,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>ventapos8898</finalName>
+		<finalName>ventalogistica8900</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
