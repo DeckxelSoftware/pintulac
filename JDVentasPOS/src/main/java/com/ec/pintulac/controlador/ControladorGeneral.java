@@ -44,6 +44,7 @@ public class ControladorGeneral {
 			if (!ventas.isEmpty()) {
 
 				for (VwJdeVentasPos items : ventas) {
+					//lista datos 
 					listaDatos.add(items.getXxx());
 				}
 
@@ -53,11 +54,9 @@ public class ControladorGeneral {
 			}
 
 		} catch (HttpClientErrorException | HttpServerErrorException ex) {
-			// Captura excepciones específicas para manejar errores
+			
 			System.err.println("Error during API request: " + ex.getMessage());
-			// Maneja la respuesta de error aquí
-			// Puedes obtener el cuerpo de respuesta de error usando
-			// ex.getResponseBodyAsString()
+			
 			return ResponseEntity.status(ex.getStatusCode())
 					.body("Por favor revise los datos ingresados" + ResponseEntity.status(400));
 		} catch (Exception ex) {
