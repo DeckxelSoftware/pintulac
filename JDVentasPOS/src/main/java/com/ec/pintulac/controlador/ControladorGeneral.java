@@ -44,9 +44,14 @@ public class ControladorGeneral {
 			if (!ventas.isEmpty()) {
 
 				for (VwJdeVentasPos items : ventas) {
+<<<<<<< HEAD
 					response=	servicioGeneral.invocarVentasPos(items);
 					
 					
+=======
+					//lista datos 
+					listaDatos.add(items.getXxx());
+>>>>>>> 5f1940aa80afa5b39b02a1d5b8ca05575f63d1d6
 				}
 
 				return new ResponseEntity<>(response, HttpStatus.OK);
@@ -55,11 +60,9 @@ public class ControladorGeneral {
 			}
 
 		} catch (HttpClientErrorException | HttpServerErrorException ex) {
-			// Captura excepciones específicas para manejar errores
+			
 			System.err.println("Error during API request: " + ex.getMessage());
-			// Maneja la respuesta de error aquí
-			// Puedes obtener el cuerpo de respuesta de error usando
-			// ex.getResponseBodyAsString()
+			
 			return ResponseEntity.status(ex.getStatusCode())
 					.body("Por favor revise los datos ingresados" + ResponseEntity.status(400));
 		} catch (Exception ex) {
