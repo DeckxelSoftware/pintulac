@@ -12,7 +12,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.ec.pintulac.entidad.VwJdeVentasPos;
+import com.ec.pintulac.entidad.VwJdeVentasLogistica;
 import com.ec.pintulac.request.UnidadesNegocioRequest;
 import com.ec.pintulac.response.UnidadNegocioResponse;
 import com.ec.pintulac.utilitario.CredentialToken;
@@ -60,7 +60,7 @@ public class ServicioGeneral {
 
 	}
 	
-	public String invocarVentasPos(VwJdeVentasPos param) {
+	public String invocarVentasLogistica(VwJdeVentasLogistica param) {
 
 		HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
 				HttpClientBuilder.create().build());
