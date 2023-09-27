@@ -10,7 +10,11 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ec.pintulac</groupId>
+<<<<<<< HEAD
+	<artifactId>JDConsultaToken</artifactId>
+=======
 	<artifactId>JDToken</artifactId>
+>>>>>>> bd3484c1559d40eb3fac298fc50f8b06c2b1ccd2
 	<version>0.0.1-SNAPSHOT</version>
 	<name>JD Token</name>
 	<description>Web services pintulac</description>
