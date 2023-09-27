@@ -11,9 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
+
 import com.ec.pintulac.request.CodigosCategoriaRequest;
 import com.ec.pintulac.response.CodigosCategoriaResponse;
 
@@ -76,4 +75,5 @@ public class ServicioGeneral {
 		}
 
 	}
+
 }
