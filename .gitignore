@@ -27,8 +27,11 @@ replay_pid*
 
 .gradle/
 build/
+/target/
 target/
 bin/
+classes/
+META-INF/
 dependency-reduced-pom.xml
 
 # Eclipse Project Files
