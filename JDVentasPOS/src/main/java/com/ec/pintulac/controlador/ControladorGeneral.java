@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -45,10 +44,7 @@ public class ControladorGeneral {
 
 				for (VwJdeVentasPos items : ventas) {
 
-					response=	servicioGeneral.invocarVentasPos(items);
-					
-					
-
+					response = servicioGeneral.invocarVentasPos(items);
 				}
 
 				return new ResponseEntity<>(response, HttpStatus.OK);
@@ -57,9 +53,9 @@ public class ControladorGeneral {
 			}
 
 		} catch (HttpClientErrorException | HttpServerErrorException ex) {
-			
+
 			System.err.println("Error during API request: " + ex.getMessage());
-			
+
 			return ResponseEntity.status(ex.getStatusCode())
 					.body("Por favor revise los datos ingresados" + ResponseEntity.status(400));
 		} catch (Exception ex) {
