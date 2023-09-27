@@ -12,7 +12,7 @@
 	<groupId>com.ec.pintulac</groupId>
 	<artifactId>JDReclasificacionInventariosJDE</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>JDConsultaDescuento1y2</name>
+	<name>JDReclasificacionInventariosJDE</name>
 	<description>Web services pintulac</description>
 	<properties>
 		<java.version>8</java.version>

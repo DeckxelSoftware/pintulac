@@ -5,6 +5,6 @@ Implementation-Title: JD Consulta Descuentos
 Implementation-Version: 0.0.1-SNAPSHOT
 Implementation-Vendor-Id: com.ec.pintulac
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
- -starter-parent/JDConsultaDescuento
+ -starter-parent/JDConsultaToken
 Created-By: Maven Integration for Eclipse
 
