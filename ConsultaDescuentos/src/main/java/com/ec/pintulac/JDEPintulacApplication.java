@@ -10,18 +10,18 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class} )
-public class JDConsultaDescuentosApplication extends SpringBootServletInitializer {
+public class JDEPintulacApplication extends SpringBootServletInitializer {
 
 
 
 	public static void main(String[] args) {
-		SpringApplication.run(JDConsultaDescuentosApplication.class, args);
+		SpringApplication.run(JDEPintulacApplication.class, args);
 	}
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 
-		return application.sources(JDConsultaDescuentosApplication.class);
+		return application.sources(JDEPintulacApplication.class);
 	}
 
 
