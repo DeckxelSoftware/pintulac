@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Build-Jdk-Spec: 17
+Build-Jdk-Spec: 16
 Implementation-Title: JD Consulta Unidades Medida Fecha Hora Item
 Implementation-Version: 0.0.1-SNAPSHOT
 Implementation-Vendor: Pivotal Software, Inc.
