@@ -8,12 +8,13 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
+
+import com.ec.pintulac.entidad.VwCrearActualizaCliente;
 import com.ec.pintulac.request.MaestroClientesLDRequest;
 import com.ec.pintulac.response.MaestroClientesLDResponse;
 
@@ -24,6 +25,11 @@ public class ServicioGeneral {
 	
 	@Value("${webservices.ruta}")
 	private String ruta;
+	
+	
+	@Value("${webservices.rutain}")
+	private String rutain;
+	
 	@Value("${webservices.rutatoken}")
 	private String rutatoken;
 
@@ -74,6 +80,38 @@ public class ServicioGeneral {
 			ex.printStackTrace();
 			return null;
 		}
+
+	}
+	
+	
+	
+	
+	public String invocarCreaActualizaCliente(VwCrearActualizaCliente param) {
+
+		HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
+				HttpClientBuilder.create().build());
+		RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
+		// create auth credentials
+//		CredentialToken credentialToken = new CredentialToken(userToken, passwordToken);
+//		TokenResponse token = GestionToken.obtenerToken(credentialToken, rutatoken);
+		
+		// create headers
+
+		HttpHeaders headers = new HttpHeaders();
+		String authStr = "JDESIF:JDESIF";
+		String base64Creds = Base64.getEncoder().encodeToString(authStr.getBytes());
+		headers.add("Authorization", "Basic " + base64Creds);
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+//		headers.set("Authorization", "Bearer " +token.getUserInfo().getToken().replace("\"", ""));
+
+		// create request
+		HttpEntity<String> requestBody = new HttpEntity<String>(param.getDatoJson(), headers);
+		 ResponseEntity<String> response = restTemplate.postForEntity(rutain, requestBody,
+				 String.class);
+
+	
+
+		return response.getBody();
 
 	}
 }

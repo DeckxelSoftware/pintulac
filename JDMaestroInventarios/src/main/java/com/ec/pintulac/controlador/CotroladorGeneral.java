@@ -128,6 +128,7 @@ public class CotroladorGeneral {
 //			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
 			Gson gson = new Gson();
 			String JSON = gson.toJson(param);
+			System.out.println("JSON "+JSON);
 			respuesta = generico.callStoreProcedureArray("DINAMIC.sp_jsonin_maestro_inventario", JSON);
 			System.out.println(i++ + ": " + respuesta);
 //			}
