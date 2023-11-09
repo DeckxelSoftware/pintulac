@@ -8,19 +8,25 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
+
+import com.ec.pintulac.entidad.VwJdeConfirmacionBancos;
 
 import com.ec.pintulac.request.CodigosCategoriaRequest;
 import com.ec.pintulac.response.CodigosCategoriaResponse;
-
+import com.ec.pintulac.utilitario.CredentialToken;
+import com.ec.pintulac.utilitario.GestionToken;
+import com.ec.pintulac.utilitario.TokenResponse;
 
 @Service
 public class ServicioGeneral {
-	
-	
+
 	@Value("${webservices.ruta}")
 	private String ruta;
 	@Value("${webservices.rutatoken}")
@@ -31,48 +37,29 @@ public class ServicioGeneral {
 	@Value("${password.token}")
 	private String passwordToken;
 
-	public CodigosCategoriaResponse invocarJDE(CodigosCategoriaRequest param) {
-		try {
-			HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
-					HttpClientBuilder.create().build());
-			RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
+	public String invocarVentasPos(VwJdeConfirmacionBancos param) {
 
-			String authStr = "JDEDIS1:JDEDIS2";
-			String base64Creds = Base64.getEncoder().encodeToString(authStr.getBytes());
+		HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
+				HttpClientBuilder.create().build());
+		RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
+		// create auth credentials
+		CredentialToken credentialToken = new CredentialToken(userToken, passwordToken);
+		TokenResponse token = GestionToken.obtenerToken(credentialToken, rutatoken);
 
-			// create headers
-			HttpHeaders headers = new HttpHeaders();
-			headers.add("Authorization", "Basic " + base64Creds);
+		// create headers
 
-			HttpEntity<CodigosCategoriaRequest> requestEntity = new HttpEntity<>(param, headers);
-			ResponseEntity<CodigosCategoriaResponse> response = restTemplate.exchange(ruta, HttpMethod.POST,
-					requestEntity, CodigosCategoriaResponse.class);
+		HttpHeaders headers = new HttpHeaders();
+		String authStr = "JDEDIS1:JDEDIS2";
+		String base64Creds = Base64.getEncoder().encodeToString(authStr.getBytes());
+		headers.add("Authorization", "Basic " + base64Creds);
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+//		headers.set("Authorization", "Bearer " +token.getUserInfo().getToken().replace("\"", ""));
 
-			HttpStatus statusCode = response.getStatusCode();
+		// create request
+		HttpEntity<String> requestBody = new HttpEntity<String>(param.getDato_json(), headers);
+		ResponseEntity<String> response = restTemplate.postForEntity(ruta, requestBody, String.class);
 
-			if (statusCode.is2xxSuccessful()) {
-				CodigosCategoriaResponse consultasCostosResponse = response.getBody();
-				
-				return consultasCostosResponse;
-			} else {
-				System.err.println("Error al hacer la solicitud. Código de respuesta: " + statusCode.value());
-				return null;
-			}
-
-		}
-
-//		catch (HttpClientErrorException | HttpServerErrorException ex) {
-//			// Catch specific exceptions for handling errors
-//			System.err.println("Error during API request: " + ex.getMessage());
-//			// Handle the error response here
-//			// You can get the error response body using ex.getResponseBodyAsString()
-//			return ResponseEntity.status(ex.getStatusCode()).body("Por favor revise los datos ingresados"+ResponseEntity.status(400));
-//		}
-
-		catch (Exception ex) {
-			ex.printStackTrace();
-			return null;
-		}
+		return response.getBody();
 
 	}
 
