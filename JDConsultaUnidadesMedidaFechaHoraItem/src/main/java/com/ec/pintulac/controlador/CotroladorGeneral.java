@@ -111,7 +111,7 @@ public class CotroladorGeneral {
 //
 //	}
 
-	@PostMapping(value = "/ConsultaUnidadesMedidaFechaHoraIte")
+	@PostMapping(value = "/consulta_unidades_medida_fecha_hora_item")
 	@ApiOperation(tags = "Consulta Unidades de Medida por Fecha, Hora e Item", value = "Consulta Unidades de Medida por Fecha, Hora e Item")
 	public ResponseEntity<?> unidadNegocio(@RequestBody Object param) {
 

@@ -103,7 +103,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>JDConfirmacionBancos8883</finalName>
+		<finalName>JDConfirmacionBancos8911</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
