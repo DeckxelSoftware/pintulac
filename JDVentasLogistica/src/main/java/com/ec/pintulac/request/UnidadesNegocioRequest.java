@@ -11,10 +11,12 @@ public class UnidadesNegocioRequest {
 
 	public UnidadesNegocioRequest() {
 		super();
+	
 	}
 
 	public String getTipoUnidadNegocio() {
 		return tipoUnidadNegocio;
+	
 	}
 
 	public void setTipoUnidadNegocio(String tipoUnidadNegocio) {
