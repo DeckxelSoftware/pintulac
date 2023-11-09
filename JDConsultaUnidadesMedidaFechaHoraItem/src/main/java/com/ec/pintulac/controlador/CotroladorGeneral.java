@@ -120,9 +120,6 @@ public class CotroladorGeneral {
 			long startTime = System.currentTimeMillis();
 			int i = 0;
 			JsonObject respuesta = new JsonObject();
-//			ExistenciaFisicaResponse JSONJDE = servicioGeneral.invocarJDE(param);
-//			System.out.println("NUM ELEMENTOS: " + param.getRows().size());
-//			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
 			Gson gson = new Gson();
 			String JSON = gson.toJson(param);
 			respuesta = generico.callStoreProcedureArray("DINAMIC.sp_jsonin_unidMedid_itemFec", JSON);
