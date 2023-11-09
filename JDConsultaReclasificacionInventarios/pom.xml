@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ec.pintulac</groupId>
-	<artifactId>JDReclasificacionInventariosJDE</artifactId>
+	<artifactId>JDConsultaReclasificacionInventarios</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>JDReclasificacion</name>
+	<name>JD Consulta Reclasificacion Inventarios</name>
 	<description>Web services pintulac</description>
 	<properties>
 		<java.version>8</java.version>
@@ -103,7 +103,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>JDReclasificacionInventariosJDE8897</finalName>
+		<finalName>JDConsultaReclasificacionInventarios8897</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

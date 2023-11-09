@@ -102,7 +102,7 @@ public class CotroladorGeneral {
 //			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
 			Gson gson = new Gson();
 			String JSON = gson.toJson(param);
-			respuesta = generico.callStoreProcedureArray("DINAMIC.test", JSON);
+			respuesta = generico.callStoreProcedureArray("DINAMIC.sp_jsonin_out_datos_cartera", JSON);
 			System.out.println(i++ + ": " + respuesta);
 //			}
 			totalSum = (System.currentTimeMillis() - startTime);
