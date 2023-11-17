@@ -1,8 +1,11 @@
 package com.ec.pintulac.repository;
 
+import java.math.BigDecimal;
+
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.StoredProcedureQuery;
 import javax.transaction.Transactional;
 
@@ -65,29 +68,5 @@ public class RepositoryGenerico {
 		return jsonObject;
 	}
 	
-//	@SuppressWarnings({ "unchecked" })
-//	
-//	public JsonObject callProcedurev2(String procedureName, String params) {
-//		JsonObject jsonObject = new JsonObject();
-//		Session session = entityManager.unwrap(Session.class);
-//		try {
-//			ProcedureCall call = session.createStoredProcedureCall(procedureName);
-//			call.registerParameter("json_param1", String.class, ParameterMode.IN);
-//			call.registerParameter("json_param", String.class, ParameterMode.OUT);
-//
-//			call.setParameter("json_param1", params);
-//
-//			call.execute();
-//			String json = (String) call.getOutputParameterValue("json_param");
-//			System.out.println("RESPUESTA BASE  " + json);
-//
-//		} catch (Exception e) {
-//
-//		} finally {
-//			session.close();
-//		}
-//
-//		return jsonObject;
-//	}
 
 }

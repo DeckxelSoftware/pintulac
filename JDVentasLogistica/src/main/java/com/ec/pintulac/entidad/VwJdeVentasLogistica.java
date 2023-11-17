@@ -1,5 +1,7 @@
 package com.ec.pintulac.entidad;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,18 +13,34 @@ public class VwJdeVentasLogistica {
 	@Id
 	@Column(name = "FACTURA")
 	private String factura;
+	
+	@Column(name = "NUMERO")
+	private BigDecimal numero;
 
-	@Column(name = "XXX")
-	private String xxx;
+	@Column(name = "DATO_JSON")
+	private String datoJson;
+	
+	@Column(name = "BO_CODIGO")
+	private String BOCODIGO;
+	@Column(name = "SU_CODIGO")
+	private String SUCODIGO;
+	@Column(name = "EP_CODIGO")
+	private String EPCODIGO;
+	@Column(name = "EM_CODIGO")
+	private String EMCODIGO;
+	@Column(name = "ES_CODIGO")
+	private String ESCODIGO;
+	
+	
 
 	public VwJdeVentasLogistica() {
-		super();	
+		super();
 	}
 
-	public VwJdeVentasLogistica(String factura, String xxx) {
+	public VwJdeVentasLogistica(String factura, String datoJson) {
 		super();
 		this.factura = factura;
-		this.xxx = xxx;
+		this.datoJson = datoJson;
 	}
 
 	
@@ -34,12 +52,63 @@ public class VwJdeVentasLogistica {
 		this.factura = factura;
 	}
 
-	public String getXxx() {
-		return xxx;
+	public String getDatoJson() {
+		return datoJson;
 	}
 
-	public void setXxx(String xxx) {
-		this.xxx = xxx;
+	public void setDatoJson(String datoJson) {
+		this.datoJson = datoJson;
 	}
+
+	public BigDecimal getNumero() {
+		return numero;
+	}
+
+	public void setNumero(BigDecimal numero) {
+		this.numero = numero;
+	}
+
+	public String getBOCODIGO() {
+		return BOCODIGO;
+	}
+
+	public void setBOCODIGO(String bOCODIGO) {
+		BOCODIGO = bOCODIGO;
+	}
+
+	public String getSUCODIGO() {
+		return SUCODIGO;
+	}
+
+	public void setSUCODIGO(String sUCODIGO) {
+		SUCODIGO = sUCODIGO;
+	}
+
+	public String getEPCODIGO() {
+		return EPCODIGO;
+	}
+
+	public void setEPCODIGO(String ePCODIGO) {
+		EPCODIGO = ePCODIGO;
+	}
+
+	public String getEMCODIGO() {
+		return EMCODIGO;
+	}
+
+	public void setEMCODIGO(String eMCODIGO) {
+		EMCODIGO = eMCODIGO;
+	}
+
+	public String getESCODIGO() {
+		return ESCODIGO;
+	}
+
+	public void setESCODIGO(String eSCODIGO) {
+		ESCODIGO = eSCODIGO;
+	}
+	
+	
+
 
 }

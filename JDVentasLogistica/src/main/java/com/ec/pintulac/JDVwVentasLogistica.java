@@ -1,5 +1,6 @@
 package com.ec.pintulac;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,12 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 
 import com.ec.pintulac.entidad.VwJdeVentasLogistica;
-import com.ec.pintulac.repository.VwVentasPosRepository;
+import com.ec.pintulac.repository.RepositoryGenerico;
+import com.ec.pintulac.repository.VwCrearOrderTransferenciaLogisticaRepository;
+import com.ec.pintulac.repository.VwJdeVentaKitRepository;
 import com.ec.pintulac.services.ServicioGeneral;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 @EnableDiscoveryClient
 @EnableScheduling
@@ -23,7 +28,13 @@ import com.ec.pintulac.services.ServicioGeneral;
 public class JDVwVentasLogistica extends SpringBootServletInitializer {
 
 	@Autowired
-	VwVentasPosRepository vwVentasPosRepository;
+	VwCrearOrderTransferenciaLogisticaRepository vwCrearOrderTransferenciaLogisticaRepository;
+	@Autowired
+	VwJdeVentaKitRepository jdeVentaKitRepository;
+
+	@Autowired
+	RepositoryGenerico generico;
+
 	@Autowired
 	ServicioGeneral servicioGeneral;
 
@@ -37,31 +48,45 @@ public class JDVwVentasLogistica extends SpringBootServletInitializer {
 		return application.sources(JDVwVentasLogistica.class);
 	}
 
-//	@Scheduled(fixedRate = 10 * 60 * 1000)
+	@Scheduled(fixedRate = 1 * 10 * 1000)
 	public void tareaProcesaCategorias() {
-		System.out.println("Procesa articulos cada minuto....");
+		Gson gson = new Gson();
 
 		try {
-			Object response = "SIN DATOS";
-			List<VwJdeVentasLogistica> ventas = vwVentasPosRepository.findAll();
-			if (!ventas.isEmpty()) {
 
-				response = servicioGeneral.invocarVentasLogistica(ventas.get(0));
+			/* ejecuta el procedimiento desgloce de descuentos */
+			JsonObject respuesta = new JsonObject();
+			respuesta = generico.callStoreProcedure("DINAMIC.sp_desglose_descuento");
+
+			Object response = "SIN DATOS";
+			List<VwJdeVentasLogistica> datos = vwCrearOrderTransferenciaLogisticaRepository.findAll();
+
+//			List<String> listaDatos = new ArrayList<String>();
+			if (!datos.isEmpty()) {
+
+				for (VwJdeVentasLogistica items : datos) {
+
+					response = servicioGeneral.invocarVentasPos(items);
+					generico.update(items.getEMCODIGO(), items.getSUCODIGO(), items.getBOCODIGO(), items.getESCODIGO(),
+							items.getNumero());
+					String JSON = gson.toJson(response);
+					System.out.println("RESPUESTA JDE " + JSON);
+				}
+
+//				return new ResponseEntity<>(response, HttpStatus.OK);
+			} else {
+//				return new ResponseEntity<>(response, HttpStatus.OK);
 			}
 
-			System.out.println("EJECUCION CORRECTA");
-		}
+		} catch (HttpClientErrorException | HttpServerErrorException ex) {
 
-		catch (HttpClientErrorException | HttpServerErrorException ex) {
-			ex.printStackTrace();
-			// Catch specific exceptions for handling errors
 			System.err.println("Error during API request: " + ex.getMessage());
-			// Handle the error response here
-			// You can get the error response body using ex.getResponseBodyAsString()
-			System.out.println("ERROR " + ex.getMessage());
+
+//			return ResponseEntity.status(ex.getStatusCode())
+//					.body("Por favor revise los datos ingresados" + ResponseEntity.status(500));
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			System.out.println("ERROR " + ex.getMessage());
+//			return null;
 		}
 	}
 }

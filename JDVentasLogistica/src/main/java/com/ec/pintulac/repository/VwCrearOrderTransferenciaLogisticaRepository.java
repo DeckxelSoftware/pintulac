@@ -8,14 +8,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.ec.pintulac.entidad.VwJdeGeneracionReclasificacionInventarios;
-
+import com.ec.pintulac.entidad.VwJdeVentasLogistica;
 
 
 @SuppressWarnings("unused")
 @Repository
-public interface VwJDGeneracionReclasificacionInventariosRepository  extends JpaRepository<VwJdeGeneracionReclasificacionInventarios, String>{
-	@Query("SELECT u FROM VwJdeGeneracionReclasificacionInventarios u WHERE  u.numero=:numero")
-	List<VwJdeGeneracionReclasificacionInventarios> buscarPorNumeroFactura(
+public interface VwCrearOrderTransferenciaLogisticaRepository  extends JpaRepository<VwJdeVentasLogistica, String>{
+
+	
+	@Query("SELECT u FROM VwJdeVentasLogistica u WHERE  u.numero=:numero")
+	List<VwJdeVentasLogistica> buscarPorNumeroFactura(
 			@Param("numero") BigDecimal numero);
 }

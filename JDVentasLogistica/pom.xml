@@ -103,7 +103,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>ventalogistica8900</finalName>
+		<finalName>ventalogistica8913</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -55,7 +55,7 @@ public class CotroladorGeneral {
 			Gson gson = new Gson();
 			String JSON = gson.toJson(param);
 			System.out.println("JSON "+JSON);
-			respuesta = generico.callStoreProcedureArray("DINAMIC.sp_jsonin_maestro_inventario", JSON);
+			respuesta = generico.callStoreProcedureArray("DINAMIC.sp_jsonin_out_maestro_inventario", JSON);
 			System.out.println(i++ + ": " + respuesta);
 //			}
 			totalSum = (System.currentTimeMillis() - startTime);
@@ -72,27 +72,4 @@ public class CotroladorGeneral {
 
 	}
 
-//	@RequestMapping(value = "/modelo-obj", method = RequestMethod.POST)
-//	@ApiOperation(tags = "Modelo BDD", value = "Modelo BDD")
-//	public ResponseEntity<?> modelo(@RequestBody Object param) {
-//
-//		try {
-//			long totalSum = 0;
-//			long startTime = System.currentTimeMillis();
-//			int i = 0;
-//
-//			Gson gson = new Gson();
-//			String JSON = gson.toJson(param);
-//
-//			totalSum = (System.currentTimeMillis() - startTime);
-//			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
-//			return new ResponseEntity<String>(JSON.toString(), HttpStatus.OK);
-////			
-//
-//		} catch (Exception ex) {
-//			ex.printStackTrace();
-//			return null;
-//		}
-//
-//	}
 }

@@ -2,6 +2,7 @@ package com.ec.pintulac.controlador;
 
 import java.util.Base64;
 
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -112,32 +113,11 @@ public class CotroladorGeneral {
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			return null;
+			String stacktrace = ExceptionUtils.getStackTrace(ex);
+			return new ResponseEntity<String>("ERROR: "+stacktrace, HttpStatus.BAD_REQUEST);
 		}
 
 	}
 
-	@RequestMapping(value = "/modelo-obj", method = RequestMethod.POST)
-	@ApiOperation(tags = "Modelo BDD", value = "Modelo BDD")
-	public ResponseEntity<?> modelo(@RequestBody Object param) {
-
-		try {
-			long totalSum = 0;
-			long startTime = System.currentTimeMillis();
-			int i = 0;
-
-			Gson gson = new Gson();
-			String JSON = gson.toJson(param);
-
-			totalSum = (System.currentTimeMillis() - startTime);
-			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
-			return new ResponseEntity<String>(JSON.toString(), HttpStatus.OK);
-//			
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return null;
-		}
-
-	}
+	
 }

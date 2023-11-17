@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "VW_JDE_VENTA_POS")
+@Table(name = "VW_JDE_CONFIRMAR_CANTIDAD_DESPACHAR")
 public class VwJdeConfirmarCantidadesDespachar {
 	@Id
 	@Column(name = "FACTURA")
@@ -16,6 +16,10 @@ public class VwJdeConfirmarCantidadesDespachar {
 
 	@Column(name = "dato_json")
 	private String dato_json;
+	
+	
+
+	
 
 	public VwJdeConfirmarCantidadesDespachar() {
 		super();

@@ -8,26 +8,28 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "vw_jsonin_genera_reclasi_inve")
-public class VwJdeGeneracionReclasificacionInventarios {
+@Table(name = "VW_JDE_VENTA_KIT")
+public class VwJdeVentaKit {
 	@Id
 	@Column(name = "FACTURA")
 	private String factura;
-
-	@Column(name = "numero")
+	
+	@Column(name = "NUMERO")
 	private BigDecimal numero;
-	@Column(name = "dato_json")
-	private String dato_json;
 
-	public VwJdeGeneracionReclasificacionInventarios() {
+	@Column(name = "DATO_JSON")
+	private String datoJson;
+
+	public VwJdeVentaKit() {
 		super();
 	}
 
-	public VwJdeGeneracionReclasificacionInventarios(String factura, String dato_json) {
+	public VwJdeVentaKit(String factura, String datoJson) {
 		super();
 		this.factura = factura;
-		this.dato_json = dato_json;
+		this.datoJson = datoJson;
 	}
+
 	
 	public String getFactura() {
 		return factura;
@@ -37,12 +39,12 @@ public class VwJdeGeneracionReclasificacionInventarios {
 		this.factura = factura;
 	}
 
-	public String getDato_json() {
-		return dato_json;
+	public String getDatoJson() {
+		return datoJson;
 	}
 
-	public void setDato_json(String dato_json) {
-		this.dato_json = dato_json;
+	public void setDatoJson(String datoJson) {
+		this.datoJson = datoJson;
 	}
 
 	public BigDecimal getNumero() {
@@ -54,5 +56,4 @@ public class VwJdeGeneracionReclasificacionInventarios {
 	}
 
 	
-
 }

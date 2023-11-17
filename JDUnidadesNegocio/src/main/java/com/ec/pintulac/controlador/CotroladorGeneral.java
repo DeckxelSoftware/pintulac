@@ -34,7 +34,7 @@ public class CotroladorGeneral {
 	@Autowired
 	PrSucurRepository repository;
 
-	@RequestMapping(value = "/unidades_negocio_bodeda_json", method = RequestMethod.POST)
+	@RequestMapping(value = "/unidades_negocio_bodega_json", method = RequestMethod.POST)
 	@ApiOperation(tags = "Unidades de negocio bodega ", value = "Detallar las integraciones que componen la interfaz de salida de unidades de negocio")
 	public ResponseEntity<?> unidadNegocioBode(@RequestBody Object param) {
 
@@ -48,7 +48,7 @@ public class CotroladorGeneral {
 //			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
 			Gson gson = new Gson();
 			String JSON = gson.toJson(param);
-			respuesta = generico.callStoreProcedureArray("DINAMIC.sp_jsonin_unidad_negocio", JSON);
+			respuesta = generico.callStoreProcedureArray("DINAMIC.sp_jsonin_unidad_nego_bode", JSON);
 			System.out.println(i++ + ": " + respuesta);
 //			}
 			totalSum = (System.currentTimeMillis() - startTime);

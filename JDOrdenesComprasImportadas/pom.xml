@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ec.pintulac</groupId>
-	<artifactId>JDOrdenesComprasImportadas</artifactId>
+	<artifactId>JDConsultaOrdenesComprasImportadas</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>JDOrdenesComprasImportadas</name>
+	<name>JDConsultaOrdenesComprasImportadas</name>
 	<description>Web services pintulac</description>
 	<properties>
 		<java.version>8</java.version>
@@ -103,7 +103,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>JDJDOrdenesComprasImportadas8893</finalName>
+		<finalName>JDConsultaordenescomprasimportadas8893</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
