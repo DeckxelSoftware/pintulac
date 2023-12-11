@@ -10,19 +10,25 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
+import com.ec.pintulac.entidad.VwJdeVentaKit;
 import com.ec.pintulac.entidad.VwJdeVentasLogistica;
 import com.ec.pintulac.request.UnidadesNegocioRequest;
 import com.ec.pintulac.response.UnidadNegocioResponse;
 import com.ec.pintulac.utilitario.CredentialToken;
 import com.ec.pintulac.utilitario.GestionToken;
-import com.ec.pintulac.utilitario.TokenResponse;	
+import com.ec.pintulac.utilitario.TokenResponse;
 
 @Service
 public class ServicioGeneral {
-	@Value("${webservices.ruta}")	
+	@Value("${webservices.ruta}")
 	private String ruta;
+
+	@Value("${webservices.rutakit}")
+	private String rutakit;
+
 	@Value("${webservices.rutatoken}")
 	private String rutatoken;
 
@@ -39,7 +45,7 @@ public class ServicioGeneral {
 		// create auth credentials
 		CredentialToken credentialToken = new CredentialToken(userToken, passwordToken);
 		TokenResponse token = GestionToken.obtenerToken(credentialToken, rutatoken);
-		
+
 		// create headers
 
 		HttpHeaders headers = new HttpHeaders();
@@ -51,39 +57,72 @@ public class ServicioGeneral {
 
 		// create request
 		HttpEntity<UnidadesNegocioRequest> requestBody = new HttpEntity<UnidadesNegocioRequest>(param, headers);
-		UnidadNegocioResponse response = restTemplate.postForObject(ruta, requestBody,
-				UnidadNegocioResponse.class);
-
-	
+		UnidadNegocioResponse response = restTemplate.postForObject(ruta, requestBody, UnidadNegocioResponse.class);
 
 		return response;
 
 	}
-	
-	public String invocarVentasLogistica(VwJdeVentasLogistica param) {
+
+	public String invocarVentasPos(VwJdeVentasLogistica param) {
 
 		HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
 				HttpClientBuilder.create().build());
 		RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
 		// create auth credentials
-		CredentialToken credentialToken = new CredentialToken(userToken, passwordToken);
-		TokenResponse token = GestionToken.obtenerToken(credentialToken, rutatoken);
-		
+//		CredentialToken credentialToken = new CredentialToken(userToken, passwordToken);
+//		TokenResponse token = GestionToken.obtenerToken(credentialToken, rutatoken);
+
+		// create headers
+		try {
+			HttpHeaders headers = new HttpHeaders();
+			String authStr = "JDEDIS1:JDEDIS2";
+			String base64Creds = Base64.getEncoder().encodeToString(authStr.getBytes());
+			headers.add("Authorization", "Basic " + base64Creds);
+			headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+//		headers.set("Authorization", "Bearer " +token.getUserInfo().getToken().replace("\"", ""));
+
+			// create request
+			HttpEntity<String> requestBody = new HttpEntity<String>(param.getDatoJson(), headers);
+			ResponseEntity<String> response = restTemplate.postForEntity(ruta, requestBody, String.class);
+
+			return response.getBody();
+		} catch (HttpStatusCodeException e) {
+			String header = e.getResponseBodyAsString();
+//			    if (header != null && !header.isEmpty()) {
+//			        errorMessageId = header.get(0);                
+//			    }
+			// You can get the body, but deserialise it using mapper into a POJO
+
+			String error = "";
+			// TODO: handle exception
+			System.out.println("ERROR " + e.getMessage());
+//			error=e.get
+			return header;
+		}
+
+	}
+
+	public String invocarVentaKit(VwJdeVentaKit param) {
+
+		HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
+				HttpClientBuilder.create().build());
+		RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
+		// create auth credentials
+//		CredentialToken credentialToken = new CredentialToken(userToken, passwordToken);
+//		TokenResponse token = GestionToken.obtenerToken(credentialToken, rutatoken);
+
 		// create headers
 
 		HttpHeaders headers = new HttpHeaders();
-		String authStr = "JDEDIS1:JDEDIS2";
+		String authStr = "jdedis1:jdedis2";
 		String base64Creds = Base64.getEncoder().encodeToString(authStr.getBytes());
 		headers.add("Authorization", "Basic " + base64Creds);
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 //		headers.set("Authorization", "Bearer " +token.getUserInfo().getToken().replace("\"", ""));
 
 		// create request
-		HttpEntity<String> requestBody = new HttpEntity<String>(param.getXxx(), headers);
-		 ResponseEntity<String> response = restTemplate.postForEntity(ruta, requestBody,
-				 String.class);
-
-	
+		HttpEntity<String> requestBody = new HttpEntity<String>(param.getDatoJson(), headers);
+		ResponseEntity<String> response = restTemplate.postForEntity(rutakit, requestBody, String.class);
 
 		return response.getBody();
 

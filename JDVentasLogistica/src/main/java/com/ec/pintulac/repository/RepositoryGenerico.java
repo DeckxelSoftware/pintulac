@@ -1,8 +1,11 @@
 package com.ec.pintulac.repository;
 
+import java.math.BigDecimal;
+
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.StoredProcedureQuery;
 import javax.transaction.Transactional;
 
@@ -17,19 +20,15 @@ public class RepositoryGenerico {
 	EntityManager entityManager;
 
 	@Transactional
-	public JsonObject callStoreProcedure(String procedureName, String params) {
+	public JsonObject callStoreProcedure(String procedureName) {
 		JsonObject jsonObject = new JsonObject();
 		try {
 			StoredProcedureQuery query = this.entityManager.createStoredProcedureQuery(procedureName);
 
-			query.registerStoredProcedureParameter("json_param1", String.class, ParameterMode.IN);
 			query.registerStoredProcedureParameter("json_param", String.class, ParameterMode.OUT);
-			query.setParameter("json_param1", params);
-
-			query.execute();
-
 			String json = (String) query.getOutputParameterValue("json_param");
 			jsonObject = new Gson().fromJson(json, JsonObject.class);
+			return jsonObject = new Gson().fromJson(json, JsonObject.class);
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -37,58 +36,30 @@ public class RepositoryGenerico {
 					.fromJson("{\"estado\":false, \"message\":\"error en el procedimiento Java\"}", JsonObject.class);
 		}
 
-		return jsonObject;
-	}
-
-	@Transactional
-	public JsonObject callStoreProcedureArray(String procedureName, String params) {
-		JsonObject jsonObject = new JsonObject();
-		try {
-
-			Thread.sleep(500);
-			StoredProcedureQuery query = this.entityManager.createStoredProcedureQuery(procedureName);
-
-			query.registerStoredProcedureParameter("json_param1", String.class, ParameterMode.IN);
-			query.registerStoredProcedureParameter("json_param", String.class, ParameterMode.OUT);
-			query.setParameter("json_param1", params);
-
-			query.execute();
-
-			String json = (String) query.getOutputParameterValue("json_param");
-			jsonObject = new Gson().fromJson(json, JsonObject.class);
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			return jsonObject = new Gson()
-					.fromJson("{\"estado\":false, \"message\":\"error en el procedimiento Java\"}", JsonObject.class);
-		}
-
-		return jsonObject;
-	}
-
-//	@SuppressWarnings({ "unchecked" })
-//	
-//	public JsonObject callProcedurev2(String procedureName, String params) {
-//		JsonObject jsonObject = new JsonObject();
-//		Session session = entityManager.unwrap(Session.class);
-//		try {
-//			ProcedureCall call = session.createStoredProcedureCall(procedureName);
-//			call.registerParameter("json_param1", String.class, ParameterMode.IN);
-//			call.registerParameter("json_param", String.class, ParameterMode.OUT);
-//
-//			call.setParameter("json_param1", params);
-//
-//			call.execute();
-//			String json = (String) call.getOutputParameterValue("json_param");
-//			System.out.println("RESPUESTA BASE  " + json);
-//
-//		} catch (Exception e) {
-//
-//		} finally {
-//			session.close();
-//		}
-//
 //		return jsonObject;
-//	}
+	}
 
+	
+	@Transactional
+	public String update(String emCodigo,String suCodigo,String boCodigo,String esCodigo,BigDecimal veNumero) {
+		JsonObject jsonObject = new JsonObject();
+		try {
+			String SQL="UPDATE fa_venta vn SET vn.VE_PROCESA_JDE ='E' WHERE "
+					+ " vn.es_codigo = "+esCodigo
+					+ "and vn.em_codigo = "+emCodigo
+					+ "and vn.su_codigo = "+suCodigo
+					+ "and vn.bo_codigo = "+boCodigo
+					+ "and vn.ve_numero= "+ veNumero;
+			Query query = this.entityManager.createNativeQuery(SQL);
+			 int updateCount = query.executeUpdate();
+			
+			return "Correcto";
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			return e.getMessage();
+		}
+
+//		return jsonObject;
+	}
 }

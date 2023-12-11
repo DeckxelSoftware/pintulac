@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ec.pintulac</groupId>
-	<artifactId>JDCuentaRecaudos</artifactId>
+	<artifactId>JDConsultaCuentaRecaudos</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>JDCuentaRecaudos</name>
+	<name>JDConsultaCuentaRecaudos</name>
 	<description>Web services pintulac</description>
 	<properties>
 		<java.version>8</java.version>
@@ -103,7 +103,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>JDCuentaRecaudos8888</finalName>
+		<finalName>JDConsultacuentarecaudos8888</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -8,12 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "VW_JDE_VENTA_POS")
+@Table(name = "vw_jsonin_genera_reclasi_inve")
 public class VwJdeGeneracionReclasificacionInventarios {
 	@Id
 	@Column(name = "FACTURA")
 	private String factura;
 
+	@Column(name = "numero")
+	private BigDecimal numero;
 	@Column(name = "dato_json")
 	private String dato_json;
 
@@ -41,6 +43,14 @@ public class VwJdeGeneracionReclasificacionInventarios {
 
 	public void setDato_json(String dato_json) {
 		this.dato_json = dato_json;
+	}
+
+	public BigDecimal getNumero() {
+		return numero;
+	}
+
+	public void setNumero(BigDecimal numero) {
+		this.numero = numero;
 	}
 
 	

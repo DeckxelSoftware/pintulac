@@ -53,8 +53,7 @@ public class CotroladorGeneral {
 		try {
 			Object response = "SIN DATOS";
 			List<VwJdeConfirmacionCantidadesRecibir> ventas = vwJDVentaLogisticaFacturacionRepository.findAll();
-			List<String> listaDatos = new ArrayList<String>();
-			if (!ventas.isEmpty()) {
+		
 
 				for (VwJdeConfirmacionCantidadesRecibir items : ventas) {
 
@@ -65,10 +64,7 @@ public class CotroladorGeneral {
 				}
 
 				return new ResponseEntity<>(response, HttpStatus.OK);
-			} else {
-				return new ResponseEntity<>(response, HttpStatus.OK);
-			}
-
+		
 		} catch (HttpClientErrorException | HttpServerErrorException ex) {
 			
 			System.err.println("Error during API request: " + ex.getMessage());

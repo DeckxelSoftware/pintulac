@@ -1,7 +1,8 @@
 package com.ec.pintulac.controlador;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,9 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ec.pintulac.entidad.VwCrearActualizaCliente;
 import com.ec.pintulac.repository.RepositoryGenerico;
+import com.ec.pintulac.repository.VwCreaActualizaClienteRepository;
 import com.ec.pintulac.response.MaestroClientesLDResponse;
 import com.ec.pintulac.services.ServicioGeneral;
+import com.ec.pintulac.utilitario.ParamBusqueda;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -29,51 +33,12 @@ public class CotroladorGeneral {
 	@Autowired
 	RepositoryGenerico generico;
 
-//	
-//	@PostMapping(value = "/maestro_clientes_est")
-//	@ApiOperation(tags = "maestro_clientes_LD2", value = "Detallar las integraciones que componen la interfaz de salida de maestro de clientes en el libro de direcciones.")
-//	public MaestroClientesLDResponse obtener(@RequestBody MaestroClientesLDRequest param) {
-//		try {
-//			HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(
-//					HttpClientBuilder.create().build());
-//			RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
-//
-//			String authStr = "JDESIF:JDESIF";
-//			String base64Creds = Base64.getEncoder().encodeToString(authStr.getBytes());
-//
-//			// create headers
-//			HttpHeaders headers = new HttpHeaders();
-//			headers.add("Authorization", "Basic " + base64Creds);
-//
-//			HttpEntity<MaestroClientesLDRequest> requestEntity = new HttpEntity<>(param, headers);
-//			ResponseEntity<MaestroClientesLDResponse> response = restTemplate.exchange(ruta, HttpMethod.POST,
-//					requestEntity, MaestroClientesLDResponse.class);
-//
-//			HttpStatus statusCode = response.getStatusCode();
-//
-//			if (statusCode.is2xxSuccessful()) {
-//				MaestroClientesLDResponse consultasCostosResponse = response.getBody();
-//				
-//				return consultasCostosResponse;
-//			} else {
-//				System.err.println("Error al hacer la solicitud. Código de respuesta: " + statusCode.value());
-//				return null;
-//			}
-//
-//		}
-//
-//
-//
-//		catch (Exception ex) {
-//			ex.printStackTrace();
-//			return null;
-//		}
-//
-//	}
+	@Autowired
+	VwCreaActualizaClienteRepository actualizaClienteRepository;
 
-	@RequestMapping(value = "/maestro_clientes_LD2", method = RequestMethod.POST)
-	@ApiOperation(tags = "maestro_clientes_LD2", value = "Detallar las integraciones que componen la interfaz de salida de maestro de clientes en el libro de direcciones.")
-	public ResponseEntity<?> maestroClientes(@RequestBody MaestroClientesLDResponse param) {
+	@RequestMapping(value = "/maestro_clientes", method = RequestMethod.POST)
+	@ApiOperation(tags = "Maestr de cliente", value = "ESP-INT-OUT-Maestro de clientes")
+	public ResponseEntity<?> maestroClientes(@RequestBody Object param) {
 
 		try {
 
@@ -86,12 +51,12 @@ public class CotroladorGeneral {
 //			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
 			Gson gson = new Gson();
 			String JSON = gson.toJson(param);
-			respuesta = generico.callStoreProcedureArray("DINAMIC.test", JSON);
+			respuesta = generico.callStoreProcedureArray("DINAMIC.sp_jsonin_out_maestro_cliente", JSON);
 			System.out.println(i++ + ": " + respuesta);
 //			}
 			totalSum = (System.currentTimeMillis() - startTime);
 			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
-			return new ResponseEntity<String>(respuesta.toString(), HttpStatus.OK);
+			return new ResponseEntity<String>(respuesta==null ?"VALOR NULO DEL PROCEDIMIENTO": respuesta.toString(), HttpStatus.OK);
 //			
 
 		} catch (Exception ex) {
@@ -101,21 +66,26 @@ public class CotroladorGeneral {
 
 	}
 
-	@RequestMapping(value = "/modelo-obj", method = RequestMethod.POST)
-	@ApiOperation(tags = "Modelo BDD", value = "Modelo BDD")
-	public ResponseEntity<?> modelo(@RequestBody Object param) {
+	@RequestMapping(value = "/creacion_actualizacion_clientes", method = RequestMethod.POST)
+	@ApiOperation(tags = "Maestro de clientes ", value = "Creacion y actualizacion de clientes INT IN")
+	public ResponseEntity<?> creaciobActualizacionCliente(@RequestBody ParamBusqueda param) {
 
 		try {
-			long totalSum = 0;
-			long startTime = System.currentTimeMillis();
-			int i = 0;
+			List<VwCrearActualizaCliente> datos = actualizaClienteRepository.buscarPorRuc(param.getBusqueda());
+			String valorRes ="";
+			for (VwCrearActualizaCliente items : datos) {
+				Gson gson = new Gson();
+				String JSON = gson.toJson(items);
 
-			Gson gson = new Gson();
-			String JSON = gson.toJson(param);
+				System.out.println("KIT ENVIADO  " + JSON);
 
-			totalSum = (System.currentTimeMillis() - startTime);
-			System.out.println("Tiempo ejecucion" + (totalSum / 1000));
-			return new ResponseEntity<String>(JSON.toString(), HttpStatus.OK);
+				valorRes= servicioGeneral.invocarCreaActualizaCliente(items);
+				
+				//con la respuesta ejecutar sp_jsonin_crea_actu_clien 
+				System.out.println("EJECUTA KIT  " + valorRes);
+			}
+
+			return new ResponseEntity<String>(valorRes.toString(), HttpStatus.OK);
 //			
 
 		} catch (Exception ex) {

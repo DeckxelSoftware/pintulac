@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -74,7 +75,8 @@ public class CotroladorGeneral {
 					.body("Por favor revise los datos ingresados" + ResponseEntity.status(400));
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			return null;
+			String stacktrace = ExceptionUtils.getStackTrace(ex);
+			return new ResponseEntity<String>("ERROR: "+stacktrace, HttpStatus.BAD_REQUEST);
 		}
 	}
 }

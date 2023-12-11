@@ -1,8 +1,11 @@
 package com.ec.pintulac.repository;
 
+import java.math.BigDecimal;
+
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.StoredProcedureQuery;
 import javax.transaction.Transactional;
 
@@ -65,29 +68,27 @@ public class RepositoryGenerico {
 		return jsonObject;
 	}
 	
-//	@SuppressWarnings({ "unchecked" })
-//	
-//	public JsonObject callProcedurev2(String procedureName, String params) {
-//		JsonObject jsonObject = new JsonObject();
-//		Session session = entityManager.unwrap(Session.class);
-//		try {
-//			ProcedureCall call = session.createStoredProcedureCall(procedureName);
-//			call.registerParameter("json_param1", String.class, ParameterMode.IN);
-//			call.registerParameter("json_param", String.class, ParameterMode.OUT);
-//
-//			call.setParameter("json_param1", params);
-//
-//			call.execute();
-//			String json = (String) call.getOutputParameterValue("json_param");
-//			System.out.println("RESPUESTA BASE  " + json);
-//
-//		} catch (Exception e) {
-//
-//		} finally {
-//			session.close();
-//		}
-//
+	@Transactional
+	public String update(String emCodigo,String suCodigo,String boCodigo,String esCodigo,BigDecimal numero) {
+		JsonObject jsonObject = new JsonObject();
+		try {
+			String SQL="UPDATE IN_COMPRA vn SET vn.VE_PROCESA_JDE ='E' WHERE "
+					+ " vn.ec_codigo = "+esCodigo
+					+ "and vn.em_codigo = "+emCodigo
+					+ "and vn.su_codigo = "+suCodigo
+					+ "and vn.bo_codigo = "+boCodigo
+					+ "and vn.co_numero= "+ numero;
+			Query query = this.entityManager.createNativeQuery(SQL);
+			 int updateCount = query.executeUpdate();
+			
+			return "Correcto";
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			return e.getMessage();
+		}
+
 //		return jsonObject;
-//	}
+	}
 
 }

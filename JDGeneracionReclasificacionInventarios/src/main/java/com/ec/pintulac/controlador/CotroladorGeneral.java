@@ -30,6 +30,7 @@ import com.ec.pintulac.request.CodigosCategoriaRequest;
 import com.ec.pintulac.response.ConnectorRequest1Data;
 import com.ec.pintulac.response.CodigosCategoriaResponse;
 import com.ec.pintulac.services.ServicioGeneral;
+import com.ec.pintulac.utilitario.ParamReclasificacionInventario;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -47,32 +48,33 @@ public class CotroladorGeneral {
 	@Autowired
 	ServicioGeneral servicioGeneral;
 
+	@Autowired
+	RepositoryGenerico generico;
+
 	@PostMapping(value = "/generacion_reclasificacion_inventarios")
 	@ApiOperation(tags = "generacion_reclasificacion_inventarios", value = "Detallar los elementos que conforman la integración de entrada a JDE para la generación de reclasificación de inventarios, para integrar la información con el sistema satélite.")
-	public ResponseEntity<?> vwVentasPos() {
+	public ResponseEntity<?> generacionReclasificacionInventarios(@RequestBody ParamReclasificacionInventario prod) {
 		try {
+
+			/* ejecuta el procedimiento desgloce de descuentos */
+			List<VwJdeGeneracionReclasificacionInventarios> lista = new ArrayList<VwJdeGeneracionReclasificacionInventarios>();
+			lista = generico.callStoreProcedure("DINAMIC.sp_json_in_out_desglose_formula", prod.getNumeroFactura());
+
 			Object response = "SIN DATOS";
-			List<VwJdeGeneracionReclasificacionInventarios> ventas = vwJDVentaLogisticaFacturacionRepository.findAll();
-			List<String> listaDatos = new ArrayList<String>();
-			if (!ventas.isEmpty()) {
+//			List<VwJdeGeneracionReclasificacionInventarios> ventas = vwJDVentaLogisticaFacturacionRepository.buscarPorNumeroFactura(prod.getNumeroFactura());
 
-				for (VwJdeGeneracionReclasificacionInventarios items : ventas) {
+			for (VwJdeGeneracionReclasificacionInventarios items : lista) {
 
-					response=	servicioGeneral.invocarVentasPos(items);
-					
-					
+				response = servicioGeneral.invocarVentasPos(items);
 
-				}
-
-				return new ResponseEntity<>(response, HttpStatus.OK);
-			} else {
-				return new ResponseEntity<>(response, HttpStatus.OK);
 			}
 
+			return new ResponseEntity<>(response, HttpStatus.OK);
+
 		} catch (HttpClientErrorException | HttpServerErrorException ex) {
-			
+
 			System.err.println("Error during API request: " + ex.getMessage());
-			
+
 			return ResponseEntity.status(ex.getStatusCode())
 					.body("Por favor revise los datos ingresados" + ResponseEntity.status(400));
 		} catch (Exception ex) {

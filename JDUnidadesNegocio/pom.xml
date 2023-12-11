@@ -103,7 +103,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>unidad_negocio8883</finalName>
+		<finalName>unidad_negocio8898</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

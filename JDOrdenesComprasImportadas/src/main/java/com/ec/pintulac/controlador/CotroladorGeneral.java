@@ -2,6 +2,7 @@ package com.ec.pintulac.controlador;
 
 import java.util.Base64;
 
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -102,7 +103,7 @@ public class CotroladorGeneral {
 //			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
 			Gson gson = new Gson();
 			String JSON = gson.toJson(param);
-			respuesta = generico.callStoreProcedureArray("DINAMIC.test", JSON);
+			respuesta = generico.callStoreProcedureArray("DINAMIC.sp_jsonin_out_consulta_ordenes_importadas", JSON);
 			System.out.println(i++ + ": " + respuesta);
 //			}
 			totalSum = (System.currentTimeMillis() - startTime);
@@ -112,9 +113,9 @@ public class CotroladorGeneral {
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			return null;
+			String stacktrace = ExceptionUtils.getStackTrace(ex);
+			return new ResponseEntity<String>("ERROR: " + stacktrace, HttpStatus.BAD_REQUEST);
 		}
-
 	}
 
 	@RequestMapping(value = "/modelo-obj", method = RequestMethod.POST)
