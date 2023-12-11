@@ -2,6 +2,7 @@ package com.ec.pintulac.controlador;
 
 import java.util.Base64;
 
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -135,7 +136,8 @@ public class CotroladorGeneral {
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			return null;
+			String stacktrace = ExceptionUtils.getStackTrace(ex);
+			return new ResponseEntity<String>("ERROR: "+stacktrace, HttpStatus.BAD_REQUEST);
 		}
 
 	}

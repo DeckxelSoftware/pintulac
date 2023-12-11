@@ -2,6 +2,7 @@ package com.ec.pintulac.controlador;
 
 
 
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -95,7 +96,7 @@ public class CotroladorGeneral {
 //			for (Row item : JSONJDE.getConnectorRequest1().getRows()) {
 			Gson gson = new Gson();
 			String JSON = gson.toJson(param);
-			respuesta = generico.callStoreProcedureArray("DINAMIC.test", JSON);
+			respuesta = generico.callStoreProcedureArray("DINAMIC.sp_jsonin_out_existencia_resum", JSON);
 			System.out.println(i++ + ": " + respuesta);
 //			}
 			totalSum = (System.currentTimeMillis() - startTime);
@@ -105,7 +106,8 @@ public class CotroladorGeneral {
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			return null;
+			String stacktrace = ExceptionUtils.getStackTrace(ex);
+			return new ResponseEntity<String>("ERROR: "+stacktrace, HttpStatus.BAD_REQUEST);
 		}
 
 	}
